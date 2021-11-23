@@ -12,7 +12,7 @@ public class GameController extends GameObject {
 
     private static final int TIME_BETWEEN_ENEMIES = 500;
     private long currentMillis;
-    private List<Asteroid> asteroidPool = new ArrayList<Asteroid>();
+    private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
     private int enemiesSpawned;
 
     public GameController(GameEngine gameEngine) {
@@ -35,7 +35,7 @@ public class GameController extends GameObject {
         long waveTimestamp = enemiesSpawned*TIME_BETWEEN_ENEMIES;
         if (currentMillis > waveTimestamp) {
             // Spawn a new enemy
-            Asteroid a = asteroidPool.remove(0);
+            DestroyableItem a = asteroidPool.remove(0);
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             enemiesSpawned++;
@@ -48,7 +48,7 @@ public class GameController extends GameObject {
         // This game object does not draw anything
     }
 
-    public void returnToPool(Asteroid asteroid) {
+    public void returnToPool(DestroyableItem asteroid) {
         asteroidPool.add(asteroid);
     }
 }

@@ -49,10 +49,11 @@ public class Bullet extends Sprite {
         if (otherObject instanceof Asteroid) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
-            Asteroid a = (Asteroid) otherObject;
+            DestroyableItem a = (DestroyableItem) otherObject;
+            a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
-            // Add some score
+
         }
     }
 }
