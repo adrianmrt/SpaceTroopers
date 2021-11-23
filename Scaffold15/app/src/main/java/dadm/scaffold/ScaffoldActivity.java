@@ -5,9 +5,11 @@ import android.os.Build;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
+import dadm.scaffold.engine.ScoreManager;
 import dadm.scaffold.sound.SoundManager;
 
 public class ScaffoldActivity extends AppCompatActivity {
@@ -15,6 +17,7 @@ public class ScaffoldActivity extends AppCompatActivity {
     private static final String TAG_FRAGMENT = "content";
 
     private SoundManager soundManager;
+    private ScoreManager scoreManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,14 +30,20 @@ public class ScaffoldActivity extends AppCompatActivity {
         }
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         soundManager = new SoundManager(getApplicationContext());
+        scoreManager= new ScoreManager();
+
     }
 
     public SoundManager getSoundManager() {
         return soundManager;
     }
 
+    public ScoreManager getScoreManager() {
+        return scoreManager;
+    }
+
     public void startGame() {
-        // Navigate the the game fragment, which makes the start automatically
+        // Navigate the game fragment, which makes the start automatically
         navigateToFragment( new GameFragment());
     }
 
