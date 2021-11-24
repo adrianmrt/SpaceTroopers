@@ -15,7 +15,7 @@
         android:layout_marginStart="@dimen/activity_vertical_margin"
         android:layout_marginLeft="@dimen/activity_vertical_margin"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="20sp" />
 
     <dadm.scaffold.engine.StandardGameView
@@ -33,6 +33,14 @@
         android:text="@string/pause"
         android:layout_marginEnd="@dimen/activity_vertical_margin" />
 
-    <include layout="@layout/view_joystick"/>
+    <include layout="@layout/view_joystick" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pauseMenuContainer"
+        android:layout_width="301dp"
+        android:layout_height="459dp"
+        android:layout_gravity="center_horizontal|center_vertical">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

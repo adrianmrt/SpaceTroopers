@@ -11,7 +11,7 @@ public class ScoreManager {
     private int scoreToAdd;
     TextView scoreText;
     public ScoreManager(){
-        currentScore=0;
+        this.currentScore=0;
     }
 
     public void setCurrentScore(int actualScore) {
@@ -32,6 +32,7 @@ public class ScoreManager {
 
     public void setScoreText(TextView scoreText) {
         this.scoreText = scoreText;
+        scoreText.setText(Integer.toString(currentScore));
     }
 
     //runnable for being able to change the ui from the main thread
