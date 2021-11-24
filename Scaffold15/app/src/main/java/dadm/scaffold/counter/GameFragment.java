@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
@@ -23,8 +26,26 @@ import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
+    FragmentManager fragmentManager;
 
     public GameFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        fragmentManager = getFragmentManager();
+
+        //setListeners for PauseMenu
+        fragmentManager.setFragmentResultListener("handlePauseMenu", this, ((requestKey, result) -> {
+            String nextState = result.getString("pauseMenuState");
+            if (nextState.equals("resume")) {
+                theGameEngine.resumeGame();
+            } else if (nextState.equals("exit")) {
+                theGameEngine.stopGame();
+                ((ScaffoldActivity) getActivity()).navigateBack();
+            }
+        }));
     }
 
     @Override
@@ -37,6 +58,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         view.findViewById(R.id.btn_play_pause).setOnClickListener(this);
         final ViewTreeObserver observer = view.getViewTreeObserver();
         observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
@@ -94,35 +116,12 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         return false;
     }
 
-    private void pauseGameAndShowPauseDialog() {
+    public void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
-        new AlertDialog.Builder(getActivity())
-                .setTitle(R.string.pause_dialog_title)
-                .setMessage(R.string.pause_dialog_message)
-                .setPositiveButton(R.string.resume, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        theGameEngine.resumeGame();
-                    }
-                })
-                .setNegativeButton(R.string.stop, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        theGameEngine.stopGame();
-                        ((ScaffoldActivity)getActivity()).navigateBack();
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        theGameEngine.resumeGame();
-                    }
-                })
-                .create()
-                .show();
-
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        PauseMenuFragment pauseMenuFragment= new PauseMenuFragment();
+        transaction.replace(R.id.pauseMenuContainer, pauseMenuFragment,null);
+        transaction.commit();
     }
 
     private void playOrPause() {
