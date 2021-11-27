@@ -13,57 +13,25 @@ import dadm.scaffold.R;
 
 public class JoystickInputController extends InputController {
 
-    private int outerCircleCenterPositionX;
-    private int outerCircleCenterPositionY;
-    private int innerCircleCenterPositionX;
-    private int innerCircleCenterPositionY;
-
-    private int outerCircleRadius;
-    private int innerCircleRadius;
-
-    private Paint outerCirclePaint;
-    private Paint innerCirclePaint;
-
-    private Canvas canvas;
-
     private float startingPositionX;
     private float startingPositionY;
 
     private final double maxDistance;
 
     private TextView joystickCenter;
+    private float joystickCenterX;
+    private float joystickCenterY;
 
     public JoystickInputController(View view) {
         view.findViewById(R.id.joystick_main).setOnTouchListener(new JoystickTouchListener());
         view.findViewById(R.id.joystick_touch).setOnTouchListener(new FireButtonTouchListener());
 
         joystickCenter = view.findViewById(R.id.joystickCenter);
+        joystickCenterX = view.findViewById(R.id.joystickCenter).getX();
+        joystickCenterY = view.findViewById(R.id.joystickCenter).getY();
 
-        int viewHeight = view.getHeight();
-        int viewWidth = view.getWidth();
-
-        double pixelFactor = viewHeight / 400d;
+        double pixelFactor = view.getHeight() / 400d;
         maxDistance = 50*pixelFactor;
-
-        //Círculo exterior
-        outerCircleCenterPositionX = viewWidth - 100;
-        outerCircleCenterPositionY = viewHeight - 100;
-        outerCircleRadius = 80;
-
-        outerCirclePaint = new Paint();
-        outerCirclePaint.setColor(Color.GRAY);
-        outerCirclePaint.setStyle(Paint.Style.FILL);
-
-        //Círculo interior
-        innerCircleCenterPositionX = viewWidth - 100;
-        innerCircleCenterPositionY = viewHeight - 100;
-        innerCircleRadius = 40;
-
-        innerCirclePaint = new Paint();
-        innerCirclePaint.setColor(Color.BLUE);
-        innerCirclePaint.setStyle(Paint.Style.FILL);
-
-        canvas = new Canvas();
     }
 
     private class JoystickTouchListener implements View.OnTouchListener {
@@ -71,9 +39,8 @@ public class JoystickInputController extends InputController {
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getActionMasked();
             if (action == MotionEvent.ACTION_DOWN) {
-                startingPositionX = event.getX(0);
-                startingPositionY = event.getY(0);
-                draw(canvas);
+                startingPositionX = joystickCenterX;
+                startingPositionY = joystickCenterY;
             }
             else if (action == MotionEvent.ACTION_UP) {
                 horizontalFactor = 0;
@@ -112,22 +79,6 @@ public class JoystickInputController extends InputController {
             }
             return true;
         }
-    }
-
-    public void draw(Canvas canvas){
-        canvas.drawCircle(
-                outerCircleCenterPositionX,
-                outerCircleCenterPositionY,
-                outerCircleRadius,
-                outerCirclePaint
-        );
-
-        canvas.drawCircle(
-                innerCircleCenterPositionX,
-                innerCircleCenterPositionY,
-                innerCircleRadius,
-                innerCirclePaint
-        );
     }
 }
 
