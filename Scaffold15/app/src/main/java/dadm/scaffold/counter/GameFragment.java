@@ -1,7 +1,6 @@
 package dadm.scaffold.counter;
 
-import android.content.DialogInterface;
-import android.app.AlertDialog;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -27,14 +27,18 @@ import dadm.scaffold.space.SpaceShipPlayer;
 public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
     FragmentManager fragmentManager;
+    public GameFragment instance;
 
     public GameFragment() {
+        if(instance==null){
+            instance=this;
+        }
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        fragmentManager = getFragmentManager();
+        fragmentManager = getParentFragmentManager();
 
         //setListeners for PauseMenu
         fragmentManager.setFragmentResultListener("handlePauseMenu", this, ((requestKey, result) -> {
@@ -44,6 +48,20 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             } else if (nextState.equals("exit")) {
                 theGameEngine.stopGame();
                 ((ScaffoldActivity) getActivity()).navigateBack();
+            }
+        }));
+
+        //setListeners for End game and manage score menu creation
+        fragmentManager.setFragmentResultListener("endGame", this, ((requestKey, result) -> {
+            boolean hasEnded = result.getBoolean("hasEnded");
+            int finalScore = result.getInt("score");
+            Bundle bundle = new Bundle();
+            bundle.putInt("score", finalScore);
+            if (hasEnded) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.container, ScoreMenuFragment.class, bundle);
+                transaction.remove(this);
+                transaction.commit();
             }
         }));
     }
@@ -61,18 +79,18 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
 
         view.findViewById(R.id.btn_play_pause).setOnClickListener(this);
         final ViewTreeObserver observer = view.getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onGlobalLayout(){
+            public void onGlobalLayout() {
                 //Para evitar que sea llamado múltiples veces,
                 //se elimina el listener en cuanto es llamado
                 observer.removeOnGlobalLayoutListener(this);
                 GameView gameView = (GameView) getView().findViewById(R.id.gameView);
-                theGameEngine = new GameEngine(getActivity(), gameView);
+                theGameEngine = new GameEngine((AppCompatActivity) getActivity(), gameView);
                 theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
                 //Initialize elements of score manager
-                ScoreManager scoreManager=getScaffoldActivity().getScoreManager();
+                ScoreManager scoreManager = getScaffoldActivity().getScoreManager();
                 scoreManager.setScoreText(view.findViewById(R.id.score));
                 theGameEngine.setScoreManager(scoreManager);
                 theGameEngine.setScoreManager(getScaffoldActivity().getScoreManager());
@@ -96,7 +114,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     @Override
     public void onPause() {
         super.onPause();
-        if (theGameEngine.isRunning()){
+        if (theGameEngine.isRunning()) {
             pauseGameAndShowPauseDialog();
         }
     }
@@ -119,8 +137,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void pauseGameAndShowPauseDialog() {
         theGameEngine.pauseGame();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        PauseMenuFragment pauseMenuFragment= new PauseMenuFragment();
-        transaction.replace(R.id.pauseMenuContainer, pauseMenuFragment,null);
+        PauseMenuFragment pauseMenuFragment = new PauseMenuFragment();
+        transaction.replace(R.id.pauseMenuContainer, pauseMenuFragment, null);
         transaction.commit();
     }
 
@@ -129,8 +147,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
         if (theGameEngine.isPaused()) {
             theGameEngine.resumeGame();
             button.setText(R.string.pause);
-        }
-        else {
+        } else {
             theGameEngine.pauseGame();
             button.setText(R.string.resume);
         }

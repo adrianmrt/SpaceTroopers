@@ -2,14 +2,22 @@ package dadm.scaffold.engine;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
-import android.widget.TextView;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import dadm.scaffold.R;
+import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.counter.GameFragment;
+import dadm.scaffold.counter.ScoreMenuFragment;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
@@ -30,16 +38,18 @@ public class GameEngine {
     public Random random = new Random();
 
     private SoundManager soundManager;
-    private ScoreManager scoreManager;
+    public ScoreManager scoreManager;
 
     public int width;
     public int height;
     public double pixelFactor;
 
     private Activity mainActivity;
+    FragmentManager fragmentManager;
 
-    public GameEngine(Activity activity, GameView gameView) {
+    public GameEngine(AppCompatActivity activity, GameView gameView) {
         mainActivity = activity;
+        fragmentManager = activity.getSupportFragmentManager();
 
         theGameView = gameView;
         theGameView.setGameObjects(this.gameObjects);
@@ -190,11 +200,22 @@ public class GameEngine {
         // We notify all the GameObjects
         // Also the sound manager
         soundManager.playSoundForGameEvent(gameEvent);
+        if(gameEvent.equals(GameEvent.SpaceshipDestroy)){
+            EndGame(scoreManager.getCurrentScore());
+        }
+
     }
 
     public void UpdateScoreText(int pointsToAdd){
         scoreManager.setScoreToAdd(pointsToAdd);
         mainActivity.runOnUiThread(scoreManager.AddScore);
+    }
+
+    public void EndGame(int score){
+        Intent scoreIntent = new Intent(mainActivity,ScaffoldActivity.class);
+        scoreIntent.putExtra("score", score);
+        mainActivity.startActivity(scoreIntent);
+
     }
 
 
