@@ -135,7 +135,7 @@ public class GameEngine {
                 ((ScreenGameObject) go).onPostUpdate(this);
             }
         }
-        checkCollisions();
+        //checkCollisions();
         synchronized (gameObjects) {
             while (!objectsToRemove.isEmpty()) {
                 GameObject objectToRemove = objectsToRemove.remove(0);
