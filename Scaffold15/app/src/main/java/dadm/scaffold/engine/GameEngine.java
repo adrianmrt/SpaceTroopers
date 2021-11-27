@@ -4,20 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
-import dadm.scaffold.counter.GameFragment;
-import dadm.scaffold.counter.ScoreMenuFragment;
+import dadm.scaffold.ScoreMenuActivity;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
@@ -212,7 +208,7 @@ public class GameEngine {
     }
 
     public void EndGame(int score){
-        Intent scoreIntent = new Intent(mainActivity,ScaffoldActivity.class);
+        Intent scoreIntent = new Intent(mainActivity, ScoreMenuActivity.class);
         scoreIntent.putExtra("score", score);
         mainActivity.startActivity(scoreIntent);
 

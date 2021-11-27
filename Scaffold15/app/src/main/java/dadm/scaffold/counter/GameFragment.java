@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
+import dadm.scaffold.ScoreMenuActivity;
 import dadm.scaffold.engine.FramesPerSecondCounter;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameView;
@@ -48,20 +49,6 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             } else if (nextState.equals("exit")) {
                 theGameEngine.stopGame();
                 ((ScaffoldActivity) getActivity()).navigateBack();
-            }
-        }));
-
-        //setListeners for End game and manage score menu creation
-        fragmentManager.setFragmentResultListener("endGame", this, ((requestKey, result) -> {
-            boolean hasEnded = result.getBoolean("hasEnded");
-            int finalScore = result.getInt("score");
-            Bundle bundle = new Bundle();
-            bundle.putInt("score", finalScore);
-            if (hasEnded) {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.container, ScoreMenuFragment.class, bundle);
-                transaction.remove(this);
-                transaction.commit();
             }
         }));
     }
@@ -115,7 +102,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void onPause() {
         super.onPause();
         if (theGameEngine.isRunning()) {
-            pauseGameAndShowPauseDialog();
+            //pauseGameAndShowPauseDialog();
         }
     }
 
