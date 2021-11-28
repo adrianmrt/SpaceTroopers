@@ -18,6 +18,7 @@ public class Asteroid extends DestroyableItem {
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
         setPoints(50);
+        setDamage(1);
     }
 
 

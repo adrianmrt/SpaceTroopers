@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
+import dadm.scaffold.engine.LifeManager;
 import dadm.scaffold.engine.ScoreManager;
 import dadm.scaffold.sound.SoundManager;
 
@@ -23,6 +24,7 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     private SoundManager soundManager;
     private ScoreManager scoreManager;
+    private LifeManager lifeManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class ScaffoldActivity extends AppCompatActivity {
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         soundManager = new SoundManager(getApplicationContext());
         scoreManager= new ScoreManager();
+        lifeManager= new LifeManager();
 
     }
 
@@ -45,6 +48,10 @@ public class ScaffoldActivity extends AppCompatActivity {
 
     public ScoreManager getScoreManager() {
         return scoreManager;
+    }
+
+    public LifeManager getLifeManager() {
+        return lifeManager;
     }
 
     public void startGame() {
