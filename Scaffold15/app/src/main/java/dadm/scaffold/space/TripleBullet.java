@@ -56,13 +56,8 @@ public class TripleBullet extends Bullet {
         }
     }
 
-    @Override
-    public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY) {
-        positionX = initPositionX - width / 2;
-        positionY = initPositionY - height / 2;
-        parent = parentPlayer;
-    }
 
+    //changes the rotation of the bullet and sets which bullet is
     public void setPosition(int position) {
         this.position = position;
         switch (position) {

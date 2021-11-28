@@ -22,8 +22,8 @@ public class SpaceShipPlayer extends Sprite {
     private int maxY;
     private double speedFactor;
 
-    public int lifes=1;
-    BulletType bulletType= BulletType.TripleBullet;
+    public int lifes=3;
+    BulletType bulletType= BulletType.BasicBullet;
 
     enum BulletType{
         BasicBullet,
