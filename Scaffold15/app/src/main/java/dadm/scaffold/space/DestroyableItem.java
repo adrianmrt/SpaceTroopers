@@ -18,8 +18,9 @@ public class DestroyableItem extends Sprite {
 
     protected TextView scoreText;
     private int points;
-
+    private int damage;
     GameEngine gameEngine;
+
     public DestroyableItem(GameController gameController, GameEngine gameEngine) {
         super(gameEngine, R.drawable.a10000);
         this.speed = 200d * pixelFactor/1000d;
@@ -83,8 +84,15 @@ public class DestroyableItem extends Sprite {
         gameEngine.UpdateScoreText(pointsToAdd);
     }
 
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-
     }
 }

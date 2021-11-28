@@ -5,6 +5,7 @@ import java.util.List;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.engine.LifeManager;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 import dadm.scaffold.input.InputController;
@@ -23,9 +24,10 @@ public class SpaceShipPlayer extends Sprite {
     private int maxY;
     private double speedFactor;
 
-    public int lifes=3;
     BulletType bulletType= BulletType.TripleBullet;
     boolean gainUpgrade=false;
+    GameEngine theGameEngine;
+    LifeManager lifeManager;
 
     enum BulletType{
         BasicBullet,
@@ -36,9 +38,11 @@ public class SpaceShipPlayer extends Sprite {
     public SpaceShipPlayer(GameEngine gameEngine){
         super(gameEngine, R.drawable.ship);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
-        maxX = gameEngine.width - width;
-        maxY = gameEngine.height - height;
-        initBulletPool(gameEngine);
+        theGameEngine=gameEngine;
+        maxX = theGameEngine.width - width;
+        maxY = theGameEngine.height - height;
+        initBulletPool(theGameEngine);
+        lifeManager= theGameEngine.lifeManager;
     }
 
     private void initBulletPool(GameEngine gameEngine) {
@@ -127,11 +131,11 @@ public class SpaceShipPlayer extends Sprite {
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
         if (otherObject instanceof Asteroid) {
-            lifes--;
             //gameEngine.stopGame();
             Asteroid a = (Asteroid) otherObject;
+            theGameEngine.getHurt(a.getDamage());
             a.removeObject(gameEngine);
-            if(lifes==0) {
+            if(lifeManager.getCurrentLife()==0) {
                 gameEngine.removeGameObject(this);
                 gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
             }else{

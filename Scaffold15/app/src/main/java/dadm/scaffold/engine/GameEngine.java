@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -35,6 +36,7 @@ public class GameEngine {
 
     private SoundManager soundManager;
     public ScoreManager scoreManager;
+    public LifeManager lifeManager;
 
     public int width;
     public int height;
@@ -43,10 +45,11 @@ public class GameEngine {
     private Activity mainActivity;
     FragmentManager fragmentManager;
 
+
+
     public GameEngine(AppCompatActivity activity, GameView gameView) {
         mainActivity = activity;
         fragmentManager = activity.getSupportFragmentManager();
-
         theGameView = gameView;
         theGameView.setGameObjects(this.gameObjects);
 
@@ -60,6 +63,7 @@ public class GameEngine {
         quadTree.setArea(new Rect(0, 0, width, height));
 
         this.pixelFactor = this.height / 400d;
+
     }
 
     public void setTheInputController(InputController inputController) {
@@ -93,6 +97,7 @@ public class GameEngine {
             theDrawThread.stopGame();
         }
         scoreManager.resetScore();
+        lifeManager.resetLifes();
     }
 
     public void pauseGame() {
@@ -193,6 +198,10 @@ public class GameEngine {
         this.scoreManager = scoreManager;
     }
 
+    public void setLifeManager(LifeManager lifeManager) {
+        this.lifeManager = lifeManager;
+    }
+
     public void onGameEvent (GameEvent gameEvent) {
         // We notify all the GameObjects
         // Also the sound manager
@@ -208,13 +217,18 @@ public class GameEngine {
         mainActivity.runOnUiThread(scoreManager.AddScore);
     }
 
+    public void getHurt(int damage){
+        lifeManager.getHurt(damage);
+        mainActivity.runOnUiThread(lifeManager.updateLifeText);
+    }
+
+
     public void EndGame(int score){
         Intent scoreIntent = new Intent(mainActivity, ScoreMenuActivity.class);
         scoreIntent.putExtra("score", score);
         mainActivity.startActivity(scoreIntent);
 
     }
-
 
     public Activity getMainActivity() {
         return mainActivity;
