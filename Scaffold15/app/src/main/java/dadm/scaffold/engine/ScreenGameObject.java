@@ -9,7 +9,6 @@ public abstract class ScreenGameObject extends GameObject {
 
     protected int width;
     protected int height;
-
     public double radius;
 
     public abstract void onCollision(GameEngine gameEngine, ScreenGameObject otherObject);

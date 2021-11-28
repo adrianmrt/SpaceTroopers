@@ -9,13 +9,16 @@ import android.graphics.drawable.Drawable;
 
 public abstract class Sprite extends ScreenGameObject {
 
-    protected double rotation;
+    public double rotation;
 
     protected double pixelFactor;
 
     private final Bitmap bitmap;
 
     private final Matrix matrix = new Matrix();
+
+    protected int screenWidth;
+    protected int screenHeight;
 
     protected Sprite (GameEngine gameEngine, int drawableRes) {
         Resources r = gameEngine.getContext().getResources();
@@ -25,7 +28,8 @@ public abstract class Sprite extends ScreenGameObject {
 
         this.height = (int) (spriteDrawable.getIntrinsicHeight() * this.pixelFactor);
         this.width = (int) (spriteDrawable.getIntrinsicWidth() * this.pixelFactor);
-
+        screenHeight=gameEngine.height;
+        screenWidth=gameEngine.width;
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
 
         radius = Math.max(height, width)/2;

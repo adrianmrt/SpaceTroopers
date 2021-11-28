@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -19,6 +20,7 @@ import dadm.scaffold.ScoreMenuActivity;
 import dadm.scaffold.engine.FramesPerSecondCounter;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameView;
+import dadm.scaffold.engine.LifeManager;
 import dadm.scaffold.engine.ScoreManager;
 import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
@@ -29,6 +31,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
     FragmentManager fragmentManager;
     public GameFragment instance;
+
+
 
     public GameFragment() {
         if(instance==null){
@@ -76,11 +80,17 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine = new GameEngine((AppCompatActivity) getActivity(), gameView);
                 theGameEngine.setSoundManager(getScaffoldActivity().getSoundManager());
                 theGameEngine.setTheInputController(new JoystickInputController(getView()));
+
                 //Initialize elements of score manager
                 ScoreManager scoreManager = getScaffoldActivity().getScoreManager();
                 scoreManager.setScoreText(view.findViewById(R.id.score));
                 theGameEngine.setScoreManager(scoreManager);
-                theGameEngine.setScoreManager(getScaffoldActivity().getScoreManager());
+
+                //Initialize life Manager
+                LifeManager lifeManager= getScaffoldActivity().getLifeManager();
+                lifeManager.setLifesT(view.findViewById(R.id.lifesText));
+                theGameEngine.setLifeManager(lifeManager);
+
                 theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
                 theGameEngine.addGameObject(new GameController(theGameEngine));
