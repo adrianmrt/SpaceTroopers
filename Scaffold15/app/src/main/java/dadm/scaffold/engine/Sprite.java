@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 
 public abstract class Sprite extends ScreenGameObject {
 
-    protected double rotation;
+    public double rotation;
 
     protected double pixelFactor;
 

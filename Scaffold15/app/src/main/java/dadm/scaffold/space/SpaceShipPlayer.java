@@ -14,6 +14,7 @@ public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final long TIME_BETWEEN_BULLETS = 250;
+
     List<Bullet> bullets = new ArrayList<Bullet>();
     List<TripleBullet> tripleBullets = new ArrayList<TripleBullet>();
     private long timeSinceLastFire;
@@ -23,7 +24,8 @@ public class SpaceShipPlayer extends Sprite {
     private double speedFactor;
 
     public int lifes=3;
-    BulletType bulletType= BulletType.BasicBullet;
+    BulletType bulletType= BulletType.TripleBullet;
+    boolean gainUpgrade=false;
 
     enum BulletType{
         BasicBullet,
@@ -36,13 +38,18 @@ public class SpaceShipPlayer extends Sprite {
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         maxX = gameEngine.width - width;
         maxY = gameEngine.height - height;
-
         initBulletPool(gameEngine);
     }
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new Bullet(gameEngine));
+        }
+        initTripleBulletPool(gameEngine,9);
+    }
+
+    public void initTripleBulletPool(GameEngine gameEngine, int numberOfBullets){
+        for (int i=0; i<numberOfBullets; i++) {
             tripleBullets.add(new TripleBullet(gameEngine));
         }
     }
@@ -51,23 +58,25 @@ public class SpaceShipPlayer extends Sprite {
         if (bullets.isEmpty()) {
             return null;
         }
-        return bullets.remove(0);
+        Bullet b= bullets.remove(0);
+        b.rotation=0;
+        return b;
     }
 
     private TripleBullet getTripleBullet() {
         if (tripleBullets.isEmpty()) {
             return null;
         }
-        return tripleBullets.remove(0);
+        TripleBullet b= tripleBullets.remove(0);
+        b.rotation=0;
+        return b;
     }
 
 
     void releaseBullet(Bullet bullet) {
         bullets.add(bullet);
     }
-    void releaseBullet(TripleBullet bullet) {
-        tripleBullets.add(bullet);
-    }
+
 
     @Override
     public void startGame() {
@@ -128,6 +137,14 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void shootBullet(GameEngine gameEngine){
+
+        if(gainUpgrade){
+            initTripleBulletPool(gameEngine,9);
+        }
+        if(tripleBullets.isEmpty()){
+            bulletType=BulletType.BasicBullet;
+        }
+
         switch (bulletType){
             case TripleBullet:
                 TripleBullet[]bullets= new TripleBullet[3];
@@ -156,6 +173,7 @@ public class SpaceShipPlayer extends Sprite {
                     gameEngine.addGameObject(bullets[i]);
                 }
                 break;
+
             case BasicBullet:
                 Bullet bullet = getBullet();
                 if (bullet== null) {

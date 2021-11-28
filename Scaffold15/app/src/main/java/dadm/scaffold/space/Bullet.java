@@ -11,10 +11,14 @@ public class Bullet extends Sprite {
     protected double speedFactor;
     protected SpaceShipPlayer.BulletType bulletType;
     protected SpaceShipPlayer parent;
+    int screenWidth;
+    int screenHeight;
 
     public Bullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
+        screenWidth= gameEngine.width;
+        screenHeight= gameEngine.height;
     }
 
     @Override
@@ -51,7 +55,6 @@ public class Bullet extends Sprite {
             DestroyableItem a = (DestroyableItem) otherObject;
             a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
-            parent.releaseBullet(this);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
     }

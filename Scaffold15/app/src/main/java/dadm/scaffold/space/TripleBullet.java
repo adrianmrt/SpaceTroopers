@@ -13,34 +13,28 @@ public class TripleBullet extends Bullet {
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
-        switch (position) {
-            case 0:
-                positionX += speedFactor * elapsedMillis;
-                positionY += speedFactor * elapsedMillis;
-                if (positionY < -height || positionX < width) {
-                    gameEngine.removeGameObject(this);
-                    // And return it to the pool
-                    parent.releaseBullet(this);
-                }
-                break;
-            case 1:
-                positionY += speedFactor * elapsedMillis;
-                if (positionY < -height) {
-                    gameEngine.removeGameObject(this);
-                    // And return it to the pool
-                    parent.releaseBullet(this);
-                }
-                break;
-            case 2:
-                positionX -= speedFactor * elapsedMillis;
-                positionY += speedFactor * elapsedMillis;
-                if (positionY < -height || positionX < -width) {
-                    gameEngine.removeGameObject(this);
-                    // And return it to the pool
-                    parent.releaseBullet(this);
-                }
-                break;
-        }
+            switch (position) {
+                case 0:
+                    positionX += speedFactor * elapsedMillis;
+                    positionY += speedFactor * elapsedMillis;
+                    if (positionY < -height) {
+                        gameEngine.removeGameObject(this);
+                    }
+                    break;
+                case 1:
+                    positionY += speedFactor * elapsedMillis;
+                    if (positionY < -height) {
+                        gameEngine.removeGameObject(this);
+                    }
+                    break;
+                case 2:
+                    positionX -= speedFactor * elapsedMillis;
+                    positionY += speedFactor * elapsedMillis;
+                    if (positionY < -height) {
+                        gameEngine.removeGameObject(this);
+                    }
+                    break;
+            }
     }
 
     @Override
@@ -51,7 +45,6 @@ public class TripleBullet extends Bullet {
             DestroyableItem a = (DestroyableItem) otherObject;
             a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
-            parent.releaseBullet(this);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
     }
