@@ -8,13 +8,12 @@ import dadm.scaffold.sound.GameEvent;
 
 public class Bullet extends Sprite {
 
-    private double speedFactor;
-
-    private SpaceShipPlayer parent;
+    protected double speedFactor;
+    protected SpaceShipPlayer.BulletType bulletType;
+    protected SpaceShipPlayer parent;
 
     public Bullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
-
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
     }
 
@@ -38,7 +37,7 @@ public class Bullet extends Sprite {
         parent = parentPlayer;
     }
 
-    private void removeObject(GameEngine gameEngine) {
+    protected void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
         parent.releaseBullet(this);
@@ -52,8 +51,18 @@ public class Bullet extends Sprite {
             DestroyableItem a = (DestroyableItem) otherObject;
             a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
+            parent.releaseBullet(this);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
-
         }
     }
+
+    public void setBulletType(SpaceShipPlayer.BulletType bulletType) {
+        this.bulletType = bulletType;
+    }
+
+    public void setSpeedFactor(double speedFactor) {
+        this.speedFactor = speedFactor;
+    }
+
+
 }
