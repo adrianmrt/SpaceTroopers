@@ -41,7 +41,7 @@ public class Bullet extends Sprite {
         parent = parentPlayer;
     }
 
-    protected void removeObject(GameEngine gameEngine) {
+   protected void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
         parent.releaseBullet(this);

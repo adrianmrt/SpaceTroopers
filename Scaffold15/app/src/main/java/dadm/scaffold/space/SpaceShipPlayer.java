@@ -59,7 +59,6 @@ public class SpaceShipPlayer extends Sprite {
             return null;
         }
         Bullet b= bullets.remove(0);
-        b.rotation=0;
         return b;
     }
 
@@ -68,7 +67,6 @@ public class SpaceShipPlayer extends Sprite {
             return null;
         }
         TripleBullet b= tripleBullets.remove(0);
-        b.rotation=0;
         return b;
     }
 
@@ -110,6 +108,12 @@ public class SpaceShipPlayer extends Sprite {
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
         if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
+            if(gainUpgrade){
+                initTripleBulletPool(gameEngine,9);
+            }
+            if(tripleBullets.isEmpty()){
+                bulletType=BulletType.BasicBullet;
+            }
             shootBullet(gameEngine);
             timeSinceLastFire = 0;
             gameEngine.onGameEvent(GameEvent.LaserFired);
@@ -137,13 +141,6 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void shootBullet(GameEngine gameEngine){
-
-        if(gainUpgrade){
-            initTripleBulletPool(gameEngine,9);
-        }
-        if(tripleBullets.isEmpty()){
-            bulletType=BulletType.BasicBullet;
-        }
 
         switch (bulletType){
             case TripleBullet:

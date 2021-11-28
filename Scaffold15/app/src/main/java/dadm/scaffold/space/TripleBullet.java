@@ -17,24 +17,31 @@ public class TripleBullet extends Bullet {
                 case 0:
                     positionX += speedFactor * elapsedMillis;
                     positionY += speedFactor * elapsedMillis;
-                    if (positionY < -height) {
+                    if (positionY <=0||positionX>=screenWidth||positionX<=0) {
                         gameEngine.removeGameObject(this);
+                        removeObject(gameEngine);
                     }
                     break;
                 case 1:
                     positionY += speedFactor * elapsedMillis;
-                    if (positionY < -height) {
+                    if (positionY <=0||positionX>=screenWidth||positionX<=0) {
                         gameEngine.removeGameObject(this);
+                        removeObject(gameEngine);
                     }
                     break;
                 case 2:
                     positionX -= speedFactor * elapsedMillis;
                     positionY += speedFactor * elapsedMillis;
-                    if (positionY < -height) {
-                        gameEngine.removeGameObject(this);
+                    if (positionY <=0||positionX>=screenWidth||positionX<=0) {
+                        removeObject(gameEngine);
                     }
                     break;
             }
+    }
+
+    @Override
+    protected void removeObject(GameEngine gameEngine) {
+        gameEngine.removeGameObject(this);
     }
 
     @Override
