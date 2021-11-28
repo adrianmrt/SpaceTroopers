@@ -35,6 +35,10 @@ public class ScoreManager {
         scoreText.setText(Integer.toString(currentScore));
     }
 
+    public void resetScore(){
+        currentScore=0;
+    }
+
     //runnable for being able to change the ui from the main thread
     public Runnable AddScore= new Runnable() {
         @Override
@@ -43,4 +47,5 @@ public class ScoreManager {
             scoreText.setText(Integer.toString(currentScore));
         }
     };
+
 }

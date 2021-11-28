@@ -92,6 +92,7 @@ public class GameEngine {
         if (theDrawThread != null) {
             theDrawThread.stopGame();
         }
+        scoreManager.resetScore();
     }
 
     public void pauseGame() {
