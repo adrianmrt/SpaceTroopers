@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Collision {
-
     private static List<Collision> collisionPool = new ArrayList<Collision>();
 
     public ScreenGameObject objectA;
