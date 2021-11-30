@@ -9,12 +9,12 @@ import dadm.scaffold.engine.Sprite;
 
 public class DestroyableItem extends Sprite {
 
-    private final GameController gameController;
+    protected final GameController gameController;
 
-    private double speed;
-    private double speedX;
-    private double speedY;
-    private double rotationSpeed;
+    protected double speed;
+    protected double speedX;
+    protected double speedY;
+    protected double rotationSpeed;
 
     protected TextView scoreText;
     private int points;

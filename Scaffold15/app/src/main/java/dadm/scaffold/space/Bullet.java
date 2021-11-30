@@ -11,6 +11,9 @@ public class Bullet extends Sprite {
     protected double speedFactor;
     protected SpaceShipPlayer.BulletType bulletType;
     protected SpaceShipPlayer parent;
+
+    protected Enemy parentEnemy;
+    protected int bulletDamage;
     int screenWidth;
     int screenHeight;
 
@@ -41,6 +44,13 @@ public class Bullet extends Sprite {
         parent = parentPlayer;
     }
 
+    public void init(Enemy parentPlayer, double initPositionX, double initPositionY) {
+        positionX = initPositionX - width/2;
+        positionY = initPositionY - height/2;
+        parentEnemy = parentPlayer;
+        bulletDamage= parentEnemy.getDamage();
+    }
+
    protected void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
@@ -56,6 +66,21 @@ public class Bullet extends Sprite {
             a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
+        }
+        if (otherObject instanceof SpaceShipPlayer) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            SpaceShipPlayer a = (SpaceShipPlayer) otherObject;
+            a.lifeManager.getHurt(bulletDamage);// Add  score
+            gameEngine.removeGameObject(a);
+            gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
+        }
+        if (otherObject instanceof Enemy) {
+            // Remove both from the game (and return them to their pools)
+            removeObject(gameEngine);
+            Enemy a = (Enemy) otherObject;
+            a.getHurt(bulletDamage);// Add  score
+            //gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
         }
     }
 
