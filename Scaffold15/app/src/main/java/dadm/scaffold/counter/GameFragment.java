@@ -32,11 +32,9 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     FragmentManager fragmentManager;
     public GameFragment instance;
 
-
-
     public GameFragment() {
-        if(instance==null){
-            instance=this;
+        if (instance == null) {
+            instance = this;
         }
     }
 
@@ -87,7 +85,7 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.setScoreManager(scoreManager);
 
                 //Initialize life Manager
-                LifeManager lifeManager= getScaffoldActivity().getLifeManager();
+                LifeManager lifeManager = getScaffoldActivity().getLifeManager();
                 lifeManager.setLifesT(view.findViewById(R.id.lifesText));
                 theGameEngine.setLifeManager(lifeManager);
 
@@ -97,8 +95,6 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.startGame();
             }
         });
-
-
     }
 
     @Override

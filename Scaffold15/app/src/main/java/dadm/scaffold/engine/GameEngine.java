@@ -45,8 +45,6 @@ public class GameEngine {
     private Activity mainActivity;
     FragmentManager fragmentManager;
 
-
-
     public GameEngine(AppCompatActivity activity, GameView gameView) {
         mainActivity = activity;
         fragmentManager = activity.getSupportFragmentManager();
@@ -135,9 +133,9 @@ public class GameEngine {
     public void onUpdate(long elapsedMillis) {
         int nugameObjects = gameObjects.size();
         for (int i = 0; i < nugameObjects; i++) {
-            GameObject go =  gameObjects.get(i);
+            GameObject go = gameObjects.get(i);
             go.onUpdate(elapsedMillis, this);
-            if(go instanceof ScreenGameObject) {
+            if (go instanceof ScreenGameObject) {
                 ((ScreenGameObject) go).onPostUpdate(this);
             }
         }
@@ -146,7 +144,7 @@ public class GameEngine {
             while (!objectsToRemove.isEmpty()) {
                 GameObject objectToRemove = objectsToRemove.remove(0);
                 gameObjects.remove(objectToRemove);
-                if (objectToRemove instanceof  ScreenGameObject) {
+                if (objectToRemove instanceof ScreenGameObject) {
                     quadTree.removeGameObject((ScreenGameObject) objectToRemove);
                 }
             }
@@ -154,6 +152,11 @@ public class GameEngine {
                 GameObject gameObject = objectsToAdd.remove(0);
                 addGameObjectNow(gameObject);
             }
+        }
+        int tempScore = scoreManager.getCurrentScore();
+        if (tempScore == 1000) {
+            stopGame();
+            EndGame(tempScore);
         }
     }
 
@@ -181,7 +184,7 @@ public class GameEngine {
         quadTree.checkCollisions(this, detectedCollisions);
     }
 
-    private void addGameObjectNow (GameObject object) {
+    private void addGameObjectNow(GameObject object) {
         gameObjects.add(object);
         if (object instanceof ScreenGameObject) {
             ScreenGameObject sgo = (ScreenGameObject) object;
@@ -202,28 +205,27 @@ public class GameEngine {
         this.lifeManager = lifeManager;
     }
 
-    public void onGameEvent (GameEvent gameEvent) {
+    public void onGameEvent(GameEvent gameEvent) {
         // We notify all the GameObjects
         // Also the sound manager
         soundManager.playSoundForGameEvent(gameEvent);
-        if(gameEvent.equals(GameEvent.SpaceshipDestroy)){
+        if (gameEvent.equals(GameEvent.SpaceshipDestroy)) {
             EndGame(scoreManager.getCurrentScore());
         }
 
     }
 
-    public void UpdateScoreText(int pointsToAdd){
+    public void UpdateScoreText(int pointsToAdd) {
         scoreManager.setScoreToAdd(pointsToAdd);
         mainActivity.runOnUiThread(scoreManager.AddScore);
     }
 
-    public void getHurt(int damage){
+    public void getHurt(int damage) {
         lifeManager.getHurt(damage);
         mainActivity.runOnUiThread(lifeManager.updateLifeText);
     }
 
-
-    public void EndGame(int score){
+    public void EndGame(int score) {
         Intent scoreIntent = new Intent(mainActivity, ScoreMenuActivity.class);
         scoreIntent.putExtra("score", score);
         mainActivity.startActivity(scoreIntent);
