@@ -45,6 +45,7 @@ public class Bullet extends Sprite {
         parent = parentPlayer;
         bulletDamage= parent.getBulletDamage();
         this.effect =effect;
+        setBulletImage(effect);
     }
 
    protected void removeObject(GameEngine gameEngine) {
@@ -84,5 +85,15 @@ public class Bullet extends Sprite {
         this.speedFactor = speedFactor;
     }
 
+    private void setBulletImage(int effectB) {
+        switch (effectB) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+        }
+    }
 
 }
