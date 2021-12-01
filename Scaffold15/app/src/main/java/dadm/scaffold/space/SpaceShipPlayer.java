@@ -150,7 +150,14 @@ public class SpaceShipPlayer extends Sprite {
             Enemy a = (Enemy) otherObject;
             theGameEngine.getHurt(2);
             a.removeObject(gameEngine);
-            gameEngine.onGameEvent(GameEvent.AsteroidHit);
+            //gameEngine.onGameEvent(GameEvent.AsteroidHit);
+        } else if (otherObject instanceof UpgradeFire) {
+            UpgradeFire a = (UpgradeFire) otherObject;
+            tripleBullets.clear();
+            initTripleBulletPool(gameEngine, a.getNumberOfBullets());
+            a.removeObject(gameEngine);
+            bulletType = BulletType.TripleBullet;
+            //gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
 
         if (lifeManager.getCurrentLife() <= 0) {

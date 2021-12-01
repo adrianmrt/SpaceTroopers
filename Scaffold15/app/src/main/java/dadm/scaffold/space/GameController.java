@@ -13,11 +13,16 @@ public class GameController extends GameObject {
 
     private static final int TIME_BETWEEN_ASTEROIDS = 500;
     private static final int TIME_BETWEEN_ENEMIES = 5000;
+    private static final int TIME_BETWEEN_UPGRADES = 500;
+
     private long currentMillis;
     private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
     private List<Enemy> enemyPool = new ArrayList<Enemy>();
+    private List<UpgradeFire> upgradeFiresPool = new ArrayList<UpgradeFire>();
+
     private int enemiesSpawned;
     private int asteroidsSpawned;
+    private int upgradesFireSpawned;
 
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
@@ -27,12 +32,17 @@ public class GameController extends GameObject {
         for (int i=0; i<3; i++) {
             enemyPool.add(new Enemy(this, gameEngine, R.drawable.ship));
         }
+        for (int i=0; i<5; i++) {
+            upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.robot));
+        }
     }
 
     @Override
     public void startGame() {
         currentMillis = 0;
         enemiesSpawned = 0;
+        asteroidsSpawned=0;
+        upgradesFireSpawned=0;
     }
 
     @Override
@@ -46,7 +56,6 @@ public class GameController extends GameObject {
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             enemiesSpawned++;
-            return;
         }
         long waveTimestampAsteroids = asteroidsSpawned*TIME_BETWEEN_ASTEROIDS;
         if (currentMillis > waveTimestampAsteroids) {
@@ -55,7 +64,15 @@ public class GameController extends GameObject {
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             asteroidsSpawned++;
-            return;
+        }
+
+        long waveTimestampUpgradesFire = upgradesFireSpawned*TIME_BETWEEN_UPGRADES;
+        if (currentMillis > waveTimestampUpgradesFire&&!upgradeFiresPool.isEmpty()) {
+            // Spawn a new upgrade
+            UpgradeFire a = upgradeFiresPool.remove(0);
+            a.init(gameEngine);
+            gameEngine.addGameObject(a);
+            upgradesFireSpawned++;
         }
     }
 
@@ -67,8 +84,10 @@ public class GameController extends GameObject {
     public void returnToPool(DestroyableItem asteroid) {
         asteroidPool.add(asteroid);
     }
-
     public void returnToPool(Enemy enemy) {
         enemyPool.add(enemy);
+    }
+    public void returnToPool(UpgradeFire upgradeFire) {
+        upgradeFiresPool.add(upgradeFire);
     }
 }
