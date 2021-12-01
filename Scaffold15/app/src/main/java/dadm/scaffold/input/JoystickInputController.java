@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -25,6 +26,7 @@ public class JoystickInputController extends InputController {
     public JoystickInputController(View view) {
         view.findViewById(R.id.joystick_main).setOnTouchListener(new JoystickTouchListener());
         view.findViewById(R.id.joystick_touch).setOnTouchListener(new FireButtonTouchListener());
+        view.findViewById(R.id.joystick_change).setOnTouchListener(new ChangeWeaponTouchListener());
 
         joystickCenter = view.findViewById(R.id.joystickCenter);
         joystickCenterX = view.findViewById(R.id.joystickCenter).getX();
@@ -76,6 +78,21 @@ public class JoystickInputController extends InputController {
             }
             else if (action == MotionEvent.ACTION_UP) {
                 isFiring = false;
+            }
+            return true;
+        }
+    }
+
+    private class ChangeWeaponTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getActionMasked();
+            if (action == MotionEvent.BUTTON_PRIMARY) {
+                if (isChanged){
+                    isChanged = false;
+                } else {
+                    isChanged = true;
+                }
             }
             return true;
         }
