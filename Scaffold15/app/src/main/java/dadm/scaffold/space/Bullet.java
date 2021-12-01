@@ -17,14 +17,13 @@ public class Bullet extends Sprite {
     protected int screenWidth;
     protected int screenHeight;
 
-    public int whoIsFiring; //0 ship, 1 enemy
+    public int effect; //0 asteroids, 1 enemy, 2 player
 
-    public Bullet(GameEngine gameEngine, int type){
+    public Bullet(GameEngine gameEngine){
         super(gameEngine, R.drawable.bullet);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
         screenWidth= gameEngine.width;
         screenHeight= gameEngine.height;
-        whoIsFiring =type;
     }
 
     @Override
@@ -40,11 +39,12 @@ public class Bullet extends Sprite {
         }
     }
 
-    public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY) {
+    public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY, int effect) {
         positionX = initPositionX - width/2;
         positionY = initPositionY - height/2;
         parent = parentPlayer;
         bulletDamage= parent.getBulletDamage();
+        this.effect =effect;
     }
 
    protected void removeObject(GameEngine gameEngine) {
@@ -55,7 +55,7 @@ public class Bullet extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid && whoIsFiring ==0) {
+        if (otherObject instanceof Asteroid && effect ==0) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             DestroyableItem a = (DestroyableItem) otherObject;
@@ -63,7 +63,7 @@ public class Bullet extends Sprite {
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
-        else if (otherObject instanceof Enemy && whoIsFiring ==0) {
+        else if (otherObject instanceof Enemy && effect ==1) {
             Enemy a = (Enemy) otherObject;
             a.getHurt(bulletDamage);//damage enemy
             removeObject(gameEngine);

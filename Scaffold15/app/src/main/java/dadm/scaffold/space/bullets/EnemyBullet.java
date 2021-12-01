@@ -8,14 +8,15 @@ public class EnemyBullet extends Bullet {
 
     protected Enemy parentEnemy;
     public EnemyBullet(GameEngine gameEngine, int type) {
-        super(gameEngine, type);
+        super(gameEngine);
     }
 
-    public void init(Enemy parentPlayer, double initPositionX, double initPositionY) {
+    public void init(Enemy parentPlayer, double initPositionX, double initPositionY,int effect) {
         positionX = initPositionX - width/2;
         positionY = initPositionY+height*2;
         parentEnemy = parentPlayer;
         bulletDamage= parentEnemy.getDamage();
+        this.effect=effect;
     }
 
     @Override
