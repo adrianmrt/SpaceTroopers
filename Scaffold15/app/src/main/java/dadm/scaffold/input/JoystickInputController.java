@@ -1,7 +1,14 @@
 package dadm.scaffold.input;
 
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import dadm.scaffold.R;
 
@@ -12,9 +19,18 @@ public class JoystickInputController extends InputController {
 
     private final double maxDistance;
 
+    private TextView joystickCenter;
+    private float joystickCenterX;
+    private float joystickCenterY;
+
     public JoystickInputController(View view) {
         view.findViewById(R.id.joystick_main).setOnTouchListener(new JoystickTouchListener());
         view.findViewById(R.id.joystick_touch).setOnTouchListener(new FireButtonTouchListener());
+        view.findViewById(R.id.joystick_change).setOnTouchListener(new ChangeWeaponTouchListener());
+
+        joystickCenter = view.findViewById(R.id.joystickCenter);
+        joystickCenterX = view.findViewById(R.id.joystickCenter).getX();
+        joystickCenterY = view.findViewById(R.id.joystickCenter).getY();
 
         double pixelFactor = view.getHeight() / 400d;
         maxDistance = 50*pixelFactor;
@@ -25,8 +41,8 @@ public class JoystickInputController extends InputController {
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getActionMasked();
             if (action == MotionEvent.ACTION_DOWN) {
-                startingPositionX = event.getX(0);
-                startingPositionY = event.getY(0);
+                startingPositionX = joystickCenterX;
+                startingPositionY = joystickCenterY;
             }
             else if (action == MotionEvent.ACTION_UP) {
                 horizontalFactor = 0;
@@ -62,6 +78,21 @@ public class JoystickInputController extends InputController {
             }
             else if (action == MotionEvent.ACTION_UP) {
                 isFiring = false;
+            }
+            return true;
+        }
+    }
+
+    private class ChangeWeaponTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            int action = event.getActionMasked();
+            if (action == MotionEvent.BUTTON_PRIMARY) {
+                if (isChanged){
+                    isChanged = false;
+                } else {
+                    isChanged = true;
+                }
             }
             return true;
         }
