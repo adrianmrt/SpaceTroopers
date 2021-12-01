@@ -1,4 +1,4 @@
-package dadm.scaffold.engine;
+package dadm.scaffold.engine.managers;
 
 import android.app.Activity;
 import android.content.Context;
