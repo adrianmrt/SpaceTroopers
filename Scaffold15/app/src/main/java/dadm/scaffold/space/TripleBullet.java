@@ -7,8 +7,8 @@ import dadm.scaffold.sound.GameEvent;
 public class TripleBullet extends Bullet {
     private int position; //0 left, 1 middle, 2 right
 
-    public TripleBullet(GameEngine gameEngine) {
-        super(gameEngine);
+    public TripleBullet(GameEngine gameEngine, int type) {
+        super(gameEngine,type);
     }
 
     @Override
@@ -43,19 +43,6 @@ public class TripleBullet extends Bullet {
     protected void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
     }
-
-    @Override
-    public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid) {
-            // Remove both from the game (and return them to their pools)
-            removeObject(gameEngine);
-            DestroyableItem a = (DestroyableItem) otherObject;
-            a.addPoints(a.getPoints());// Add  score
-            a.removeObject(gameEngine);
-            gameEngine.onGameEvent(GameEvent.AsteroidHit);
-        }
-    }
-
 
     //changes the rotation of the bullet and sets which bullet is
     public void setPosition(int position) {

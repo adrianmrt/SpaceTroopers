@@ -21,8 +21,8 @@ public class DestroyableItem extends Sprite {
     private int damage;
     GameEngine gameEngine;
 
-    public DestroyableItem(GameController gameController, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.a10000);
+    public DestroyableItem(GameController gameController, GameEngine gameEngine, int spriteId) {
+        super(gameEngine, spriteId);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
         this.gameEngine=gameEngine;

@@ -14,6 +14,7 @@ import dadm.scaffold.sound.GameEvent;
 public class SpaceShipPlayer extends Sprite {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
+    private static final int INITIAL_TRIPLEBULLET_POOL_AMOUNT = 36;
     private static final long TIME_BETWEEN_BULLETS = 250;
 
     List<Bullet> bullets = new ArrayList<Bullet>();
@@ -24,10 +25,12 @@ public class SpaceShipPlayer extends Sprite {
     private int maxY;
     private double speedFactor;
 
-    BulletType bulletType= BulletType.TripleBullet;
+    BulletType bulletType= BulletType.BasicBullet;
     boolean gainUpgrade=false;
     GameEngine theGameEngine;
     LifeManager lifeManager;
+
+    int bulletDamage=1;
 
     enum BulletType{
         BasicBullet,
@@ -47,14 +50,14 @@ public class SpaceShipPlayer extends Sprite {
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
-            bullets.add(new Bullet(gameEngine));
+            bullets.add(new Bullet(gameEngine,0));
         }
-        initTripleBulletPool(gameEngine,9);
+        initTripleBulletPool(gameEngine,INITIAL_TRIPLEBULLET_POOL_AMOUNT);
     }
 
     public void initTripleBulletPool(GameEngine gameEngine, int numberOfBullets){
         for (int i=0; i<numberOfBullets; i++) {
-            tripleBullets.add(new TripleBullet(gameEngine));
+            tripleBullets.add(new TripleBullet(gameEngine,0));
         }
     }
 
@@ -135,13 +138,28 @@ public class SpaceShipPlayer extends Sprite {
             Asteroid a = (Asteroid) otherObject;
             theGameEngine.getHurt(a.getDamage());
             a.removeObject(gameEngine);
-            if(lifeManager.getCurrentLife()==0) {
-                gameEngine.removeGameObject(this);
-                gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
-            }else{
-                gameEngine.onGameEvent(GameEvent.SpaceshipHit);
+        } else if (otherObject instanceof Bullet) {
+            //gameEngine.stopGame();
+            Bullet a = (Bullet) otherObject;
+            if (a.whoIsFiring == 1) {
+                theGameEngine.getHurt(a.bulletDamage);
+                a.removeObject(gameEngine);
+
             }
+        } else if (otherObject instanceof Enemy) {
+            Enemy a = (Enemy) otherObject;
+            theGameEngine.getHurt(2);
+            a.removeObject(gameEngine);
+            gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
+
+        if (lifeManager.getCurrentLife() <= 0) {
+            gameEngine.removeGameObject(this);
+            gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
+        } else {
+            gameEngine.onGameEvent(GameEvent.SpaceshipHit);
+        }
+
     }
 
     private void shootBullet(GameEngine gameEngine){
@@ -184,5 +202,9 @@ public class SpaceShipPlayer extends Sprite {
                 gameEngine.addGameObject(bullet);
                 break;
         }
+    }
+
+    public int getBulletDamage() {
+        return bulletDamage;
     }
 }

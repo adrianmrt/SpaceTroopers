@@ -227,6 +227,7 @@ public class GameEngine {
         Intent scoreIntent = new Intent(mainActivity, ScoreMenuActivity.class);
         scoreIntent.putExtra("score", score);
         mainActivity.startActivity(scoreIntent);
+        mainActivity.finish();
 
     }
 
