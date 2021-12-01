@@ -29,41 +29,40 @@ public class SpaceShipPlayer extends Sprite {
     private int maxY;
     private double speedFactor;
 
-    BulletType bulletType= BulletType.BasicBullet;
-    boolean gainUpgrade=false;
+    BulletType bulletType = BulletType.BasicBullet;
+    boolean gainUpgrade = false;
     GameEngine theGameEngine;
     LifeManager lifeManager;
 
-    int bulletDamage=1;
-
+    int bulletDamage = 1;
     int bulletEffect; //0 asteroids, 1 enemies
-    enum BulletType{
+
+    enum BulletType {
         BasicBullet,
         TripleBullet
     }
 
-
-    public SpaceShipPlayer(GameEngine gameEngine){
+    public SpaceShipPlayer(GameEngine gameEngine) {
         super(gameEngine, R.drawable.ship);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
-        theGameEngine=gameEngine;
+        theGameEngine = gameEngine;
         maxX = theGameEngine.width - width;
         maxY = theGameEngine.height - height;
         initBulletPool(theGameEngine);
-        lifeManager= theGameEngine.lifeManager;
-        bulletEffect=0;
+        lifeManager = theGameEngine.lifeManager;
+        bulletEffect = 0;
     }
 
     private void initBulletPool(GameEngine gameEngine) {
-        for (int i=0; i<INITIAL_BULLET_POOL_AMOUNT; i++) {
+        for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
             bullets.add(new Bullet(gameEngine));
         }
-        initTripleBulletPool(gameEngine,INITIAL_TRIPLEBULLET_POOL_AMOUNT);
+        initTripleBulletPool(gameEngine, INITIAL_TRIPLEBULLET_POOL_AMOUNT);
     }
 
-    public void initTripleBulletPool(GameEngine gameEngine, int numberOfBullets){
-        for (int i=0; i<numberOfBullets; i++) {
-            tripleBullets.add(new TripleBullet(gameEngine,0));
+    public void initTripleBulletPool(GameEngine gameEngine, int numberOfBullets) {
+        for (int i = 0; i < numberOfBullets; i++) {
+            tripleBullets.add(new TripleBullet(gameEngine, 0));
         }
     }
 
@@ -71,7 +70,7 @@ public class SpaceShipPlayer extends Sprite {
         if (bullets.isEmpty()) {
             return null;
         }
-        Bullet b= bullets.remove(0);
+        Bullet b = bullets.remove(0);
         return b;
     }
 
@@ -79,7 +78,7 @@ public class SpaceShipPlayer extends Sprite {
         if (tripleBullets.isEmpty()) {
             return null;
         }
-        TripleBullet b= tripleBullets.remove(0);
+        TripleBullet b = tripleBullets.remove(0);
         return b;
     }
 
@@ -118,19 +117,20 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
+        bulletEffect = gameEngine.theInputController.isChanged ? 1 : 0;
+
         if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
-            if(gainUpgrade){
-                initTripleBulletPool(gameEngine,9);
+            if (gainUpgrade) {
+                initTripleBulletPool(gameEngine, 9);
             }
-            if(tripleBullets.isEmpty()){
-                bulletType=BulletType.BasicBullet;
+            if (tripleBullets.isEmpty()) {
+                bulletType = BulletType.BasicBullet;
             }
             shootBullet(gameEngine);
             timeSinceLastFire = 0;
             gameEngine.onGameEvent(GameEvent.LaserFired);
 
-        }
-        else {
+        } else {
             timeSinceLastFire += elapsedMillis;
         }
     }
@@ -179,31 +179,30 @@ public class SpaceShipPlayer extends Sprite {
 
     }
 
-    private void shootBullet(GameEngine gameEngine){
-
-        switch (bulletType){
+    private void shootBullet(GameEngine gameEngine) {
+        switch (bulletType) {
             case TripleBullet:
-                TripleBullet[]bullets= new TripleBullet[3];
-                bullets[0]=getTripleBullet();
-                bullets[1]=getTripleBullet();
-                bullets[2]=getTripleBullet();
+                TripleBullet[] bullets = new TripleBullet[3];
+                bullets[0] = getTripleBullet();
+                bullets[1] = getTripleBullet();
+                bullets[2] = getTripleBullet();
 
                 //check if any of the three is null
-                if(bullets[0]==null||bullets[1]==null||bullets[2]==null){
+                if (bullets[0] == null || bullets[1] == null || bullets[2] == null) {
                     return;
                 }
 
-                for (int i=0;i<bullets.length;i++){
+                for (int i = 0; i < bullets.length; i++) {
                     bullets[i].setPosition(i);
-                    switch (i){
+                    switch (i) {
                         case 0:
-                            bullets[i].init(this, positionX, positionY,bulletEffect);
+                            bullets[i].init(this, positionX, positionY, bulletEffect);
                             break;
                         case 1:
-                            bullets[i].init(this, positionX +width/2, positionY,bulletEffect);
+                            bullets[i].init(this, positionX + width / 2, positionY, bulletEffect);
                             break;
                         case 2:
-                            bullets[i].init(this, positionX + width, positionY,bulletEffect);
+                            bullets[i].init(this, positionX + width, positionY, bulletEffect);
                             break;
                     }
                     gameEngine.addGameObject(bullets[i]);
@@ -212,10 +211,10 @@ public class SpaceShipPlayer extends Sprite {
 
             case BasicBullet:
                 Bullet bullet = getBullet();
-                if (bullet== null) {
+                if (bullet == null) {
                     return;
                 }
-                bullet.init(this, positionX + width/2, positionY,bulletEffect);
+                bullet.init(this, positionX + width / 2, positionY, bulletEffect);
                 gameEngine.addGameObject(bullet);
                 break;
         }
@@ -223,15 +222,5 @@ public class SpaceShipPlayer extends Sprite {
 
     public int getBulletDamage() {
         return bulletDamage;
-    }
-
-    public void changeBulletEffect(){
-        switch (bulletEffect){
-            case 0:
-                bulletEffect=1;
-                break;
-            case 1:
-                bulletEffect=0;
-        }
     }
 }
