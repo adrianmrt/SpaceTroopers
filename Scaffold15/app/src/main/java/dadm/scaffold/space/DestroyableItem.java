@@ -9,20 +9,20 @@ import dadm.scaffold.engine.Sprite;
 
 public class DestroyableItem extends Sprite {
 
-    private final GameController gameController;
+    protected final GameController gameController;
 
-    private double speed;
-    private double speedX;
-    private double speedY;
-    private double rotationSpeed;
+    protected double speed;
+    protected double speedX;
+    protected double speedY;
+    protected double rotationSpeed;
 
     protected TextView scoreText;
     private int points;
     private int damage;
     GameEngine gameEngine;
 
-    public DestroyableItem(GameController gameController, GameEngine gameEngine) {
-        super(gameEngine, R.drawable.a10000);
+    public DestroyableItem(GameController gameController, GameEngine gameEngine, int spriteId) {
+        super(gameEngine, spriteId);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
         this.gameEngine=gameEngine;

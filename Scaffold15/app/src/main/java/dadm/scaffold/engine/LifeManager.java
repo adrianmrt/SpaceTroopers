@@ -14,7 +14,8 @@ public class LifeManager {
     public Runnable updateLifeText= new Runnable() {
         @Override
         public void run() {
-            lifesT.setText(Integer.toString(currentLife));
+            if (currentLife>0)
+                lifesT.setText(Integer.toString(currentLife));
         }
     };
 
