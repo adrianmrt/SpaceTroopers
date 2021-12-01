@@ -1,4 +1,4 @@
-package dadm.scaffold.engine;
+package dadm.scaffold.engine.managers;
 
 import android.widget.TextView;
 
@@ -14,7 +14,8 @@ public class LifeManager {
     public Runnable updateLifeText= new Runnable() {
         @Override
         public void run() {
-            lifesT.setText(Integer.toString(currentLife));
+            if (currentLife>0)
+                lifesT.setText(Integer.toString(currentLife));
         }
     };
 
@@ -33,5 +34,9 @@ public class LifeManager {
 
     public int getCurrentLife() {
         return currentLife;
+    }
+
+    public void addLife(int lifesToAdd){
+        currentLife+=lifesToAdd;
     }
 }

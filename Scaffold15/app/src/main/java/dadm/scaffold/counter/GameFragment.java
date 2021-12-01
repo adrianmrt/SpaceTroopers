@@ -1,13 +1,11 @@
 package dadm.scaffold.counter;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -16,12 +14,11 @@ import androidx.fragment.app.FragmentTransaction;
 import dadm.scaffold.BaseFragment;
 import dadm.scaffold.R;
 import dadm.scaffold.ScaffoldActivity;
-import dadm.scaffold.ScoreMenuActivity;
 import dadm.scaffold.engine.FramesPerSecondCounter;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameView;
-import dadm.scaffold.engine.LifeManager;
-import dadm.scaffold.engine.ScoreManager;
+import dadm.scaffold.engine.managers.LifeManager;
+import dadm.scaffold.engine.managers.ScoreManager;
 import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
 import dadm.scaffold.space.SpaceShipPlayer;

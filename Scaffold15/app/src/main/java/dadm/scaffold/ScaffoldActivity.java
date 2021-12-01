@@ -1,21 +1,17 @@
 package dadm.scaffold;
 
-import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Build;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import dadm.scaffold.counter.GameFragment;
 import dadm.scaffold.counter.MainMenuFragment;
-import dadm.scaffold.engine.LifeManager;
-import dadm.scaffold.engine.ScoreManager;
+import dadm.scaffold.engine.managers.LifeManager;
+import dadm.scaffold.engine.managers.ScoreManager;
 import dadm.scaffold.sound.SoundManager;
 
 public class ScaffoldActivity extends AppCompatActivity {

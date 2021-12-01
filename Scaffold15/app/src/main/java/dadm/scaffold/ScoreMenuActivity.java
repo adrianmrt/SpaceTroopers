@@ -36,6 +36,7 @@ public class ScoreMenuActivity extends AppCompatActivity {
     public void GoToMainMenu(){
         Intent mainMenuIntent= new Intent(this,ScaffoldActivity.class);
         startActivity(mainMenuIntent);
+        this.finish();
     }
 
 }

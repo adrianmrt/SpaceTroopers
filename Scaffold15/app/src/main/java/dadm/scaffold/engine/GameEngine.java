@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -13,8 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import dadm.scaffold.ScaffoldActivity;
 import dadm.scaffold.ScoreMenuActivity;
+import dadm.scaffold.engine.managers.LifeManager;
+import dadm.scaffold.engine.managers.ScoreManager;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
 import dadm.scaffold.sound.SoundManager;
@@ -225,10 +225,16 @@ public class GameEngine {
         mainActivity.runOnUiThread(lifeManager.updateLifeText);
     }
 
-    public void EndGame(int score) {
+    public void addLife(int lifesToAdd){
+        lifeManager.addLife(lifesToAdd);
+        mainActivity.runOnUiThread(lifeManager.updateLifeText);
+    }
+
+    public void EndGame(int score){
         Intent scoreIntent = new Intent(mainActivity, ScoreMenuActivity.class);
         scoreIntent.putExtra("score", score);
         mainActivity.startActivity(scoreIntent);
+        mainActivity.finish();
 
     }
 
