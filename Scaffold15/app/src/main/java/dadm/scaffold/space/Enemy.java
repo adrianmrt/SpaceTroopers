@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dadm.scaffold.engine.GameEngine;
-import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.sound.GameEvent;
 
 public class Enemy extends DestroyableItem {
 
     private static final int INITIAL_BULLET_POOL_AMOUNT = 6;
     private static final int INITIAL_TRIPLEBULLET_POOL_AMOUNT = 0;
-    private static final long TIME_BETWEEN_BULLETS = 400;
+    private static final long TIME_BETWEEN_BULLETS = 1000;
 
-    List<EnemyBullet> bullets = new ArrayList<EnemyBullet>();
+    List<EnemyBullet> enemyBullets = new ArrayList<EnemyBullet>();
     List<TripleBullet> tripleBullets = new ArrayList<TripleBullet>();
     private long timeSinceLastFire;
 
@@ -42,7 +41,7 @@ public class Enemy extends DestroyableItem {
         positionY = -height;
         rotation = 180;
         xMov = speedX;
-        yMov = speedY / 4;
+        yMov = speedY / 10;
         setPoints(150);
         setDamage(2);
         initBulletPool(gameEngine);
@@ -59,7 +58,6 @@ public class Enemy extends DestroyableItem {
         }
         positionX += xMov * elapsedMillis;
         positionY += yMov * elapsedMillis;
-        positionY=10;
         checkIfCanFire(elapsedMillis, gameEngine);
         // Check of the sprite goes out of the screen and return it to the pool if so
         if (positionY > gameEngine.height) {
@@ -108,7 +106,7 @@ public class Enemy extends DestroyableItem {
 
     private void initBulletPool(GameEngine gameEngine) {
         for (int i = 0; i < INITIAL_BULLET_POOL_AMOUNT; i++) {
-            bullets.add(new EnemyBullet(gameEngine, 1));
+            enemyBullets.add(new EnemyBullet(gameEngine, 1));
         }
         initTripleBulletPool(gameEngine, INITIAL_TRIPLEBULLET_POOL_AMOUNT);
     }
@@ -120,10 +118,10 @@ public class Enemy extends DestroyableItem {
     }
 
     private EnemyBullet getBullet() {
-        if (bullets.isEmpty()) {
+        if (enemyBullets.isEmpty()) {
             return null;
         }
-        EnemyBullet b = bullets.remove(0);
+        EnemyBullet b = enemyBullets.remove(0);
         return b;
     }
 
@@ -136,8 +134,8 @@ public class Enemy extends DestroyableItem {
     }
 
 
-    void releaseBullet(EnemyBullet bullet) {
-        bullets.add(bullet);
+    public void releaseBullet(EnemyBullet bullet) {
+        enemyBullets.add(bullet);
     }
 
     private void shootBullet(GameEngine gameEngine) {

@@ -11,18 +11,20 @@ import dadm.scaffold.engine.GameObject;
 
 public class GameController extends GameObject {
 
-    private static final int TIME_BETWEEN_ENEMIES = 500;
+    private static final int TIME_BETWEEN_ASTEROIDS = 500;
+    private static final int TIME_BETWEEN_ENEMIES = 5000;
     private long currentMillis;
     private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
     private List<Enemy> enemyPool = new ArrayList<Enemy>();
     private int enemiesSpawned;
+    private int asteroidsSpawned;
 
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
         for (int i=0; i<10; i++) {
             asteroidPool.add(new Asteroid(this, gameEngine, R.drawable.a10000));
         }
-        for (int i=0; i<1; i++) {
+        for (int i=0; i<3; i++) {
             enemyPool.add(new Enemy(this, gameEngine, R.drawable.ship));
         }
     }
@@ -37,13 +39,22 @@ public class GameController extends GameObject {
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
         currentMillis += elapsedMillis;
 
-        long waveTimestamp = enemiesSpawned*TIME_BETWEEN_ENEMIES;
-        if (currentMillis > waveTimestamp && !enemyPool.isEmpty()) {
+        long waveTimestampEnemies = enemiesSpawned*TIME_BETWEEN_ENEMIES;
+        if (currentMillis > waveTimestampEnemies && !enemyPool.isEmpty()) {
             // Spawn a new enemy
             DestroyableItem a = enemyPool.remove(0);
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             enemiesSpawned++;
+            return;
+        }
+        long waveTimestampAsteroids = asteroidsSpawned*TIME_BETWEEN_ASTEROIDS;
+        if (currentMillis > waveTimestampAsteroids) {
+            // Spawn a new asteroid
+            DestroyableItem a = asteroidPool.remove(0);
+            a.init(gameEngine);
+            gameEngine.addGameObject(a);
+            asteroidsSpawned++;
             return;
         }
     }

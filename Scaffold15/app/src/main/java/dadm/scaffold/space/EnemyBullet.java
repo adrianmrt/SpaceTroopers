@@ -19,10 +19,9 @@ public class EnemyBullet extends Bullet{
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
         positionY -= speedFactor * elapsedMillis;
-        if (positionY < height) {
-            gameEngine.removeGameObject(this);
-            // And return it to the pool
+        if (positionY >=screenHeight) {
             parentEnemy.releaseBullet(this);
+            gameEngine.removeGameObject(this);
         }
     }
 
