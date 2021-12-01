@@ -1,8 +1,10 @@
-package dadm.scaffold.space;
+package dadm.scaffold.space.bullets;
 
 import dadm.scaffold.engine.GameEngine;
+import dadm.scaffold.space.Bullet;
+import dadm.scaffold.space.Enemy;
 
-public class EnemyBullet extends Bullet{
+public class EnemyBullet extends Bullet {
 
     protected Enemy parentEnemy;
     public EnemyBullet(GameEngine gameEngine, int type) {
@@ -26,7 +28,7 @@ public class EnemyBullet extends Bullet{
     }
 
     @Override
-    protected void removeObject(GameEngine gameEngine) {
+    public void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
         parentEnemy.releaseBullet(this);

@@ -5,6 +5,8 @@ import java.util.List;
 
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.bullets.EnemyBullet;
+import dadm.scaffold.space.bullets.TripleBullet;
 
 public class Enemy extends DestroyableItem {
 

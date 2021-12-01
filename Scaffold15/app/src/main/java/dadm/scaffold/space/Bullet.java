@@ -5,6 +5,7 @@ import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.bullets.EnemyBullet;
 
 public class Bullet extends Sprite {
 
@@ -13,8 +14,8 @@ public class Bullet extends Sprite {
     protected SpaceShipPlayer parent;
 
     protected int bulletDamage;
-    int screenWidth;
-    int screenHeight;
+    protected int screenWidth;
+    protected int screenHeight;
 
     public int whoIsFiring; //0 ship, 1 enemy
 

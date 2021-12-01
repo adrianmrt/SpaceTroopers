@@ -75,11 +75,9 @@ public class DestroyableItem extends Sprite {
     public int getPoints() {
         return points;
     }
-
     public void setPoints(int points) {
         this.points = points;
     }
-
     public void addPoints(int pointsToAdd){
         gameEngine.UpdateScoreText(pointsToAdd);
     }
@@ -87,7 +85,6 @@ public class DestroyableItem extends Sprite {
     public int getDamage() {
         return damage;
     }
-
     public void setDamage(int damage) {
         this.damage = damage;
     }
