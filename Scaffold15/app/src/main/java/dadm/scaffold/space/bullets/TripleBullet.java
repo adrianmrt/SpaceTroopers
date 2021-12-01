@@ -9,7 +9,7 @@ public class TripleBullet extends Bullet {
     private int position; //0 left, 1 middle, 2 right
 
     public TripleBullet(GameEngine gameEngine, int type) {
-        super(gameEngine,type);
+        super(gameEngine);
     }
 
     @Override

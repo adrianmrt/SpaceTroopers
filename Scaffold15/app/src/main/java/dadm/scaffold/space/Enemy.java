@@ -145,7 +145,7 @@ public class Enemy extends DestroyableItem {
         if (bullet == null) {
             return;
         }
-        bullet.init(this, positionX + width / 2, positionY);
+        bullet.init(this, positionX + width / 2, positionY,2);
         gameEngine.addGameObject(bullet);
      }
 
