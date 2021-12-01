@@ -87,14 +87,23 @@ public class JoystickInputController extends InputController {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
             int action = event.getActionMasked();
+
+            //Para pc
             if (action == MotionEvent.BUTTON_PRIMARY) {
-                if (isChanged){
-                    isChanged = false;
-                } else {
-                    isChanged = true;
-                }
+                changeAmmo(isChanged);
+            //Para movil?
+            } else if (action == MotionEvent.ACTION_BUTTON_PRESS){
+                changeAmmo(isChanged);
             }
             return true;
+        }
+
+        void changeAmmo(boolean auxIsChanged){
+            if (isChanged){
+                isChanged = false;
+            } else {
+                isChanged = true;
+            }
         }
     }
 }
