@@ -5,11 +5,14 @@ import java.util.List;
 
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
-import dadm.scaffold.engine.LifeManager;
+import dadm.scaffold.engine.managers.LifeManager;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.engine.Sprite;
 import dadm.scaffold.input.InputController;
 import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.bullets.TripleBullet;
+import dadm.scaffold.space.upgrades.UpgradeFire;
+import dadm.scaffold.space.upgrades.UpgradeHealth;
 
 public class SpaceShipPlayer extends Sprite {
 
@@ -158,7 +161,13 @@ public class SpaceShipPlayer extends Sprite {
             a.removeObject(gameEngine);
             bulletType = BulletType.TripleBullet;
             //gameEngine.onGameEvent(GameEvent.AsteroidHit);
+        } else if (otherObject instanceof UpgradeHealth) {
+            UpgradeHealth a = (UpgradeHealth) otherObject;
+            gameEngine.addLife(a.getHealth());
+            a.removeObject(gameEngine);
+            //gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
+
 
         if (lifeManager.getCurrentLife() <= 0) {
             gameEngine.removeGameObject(this);

@@ -1,14 +1,13 @@
-package dadm.scaffold.space;
+package dadm.scaffold.space.upgrades;
 
 import dadm.scaffold.engine.GameEngine;
-import dadm.scaffold.engine.ScreenGameObject;
-import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.DestroyableItem;
+import dadm.scaffold.space.GameController;
 
-public class UpgradeFire extends DestroyableItem{
+public class UpgradeHealth  extends DestroyableItem {
+    private int health;
 
-    private int numberOfBullets;
-
-    public UpgradeFire(GameController gameController, GameEngine gameEngine, int spriteId) {
+    public UpgradeHealth(GameController gameController, GameEngine gameEngine, int spriteId) {
         super(gameController, gameEngine, spriteId);
     }
 
@@ -20,7 +19,7 @@ public class UpgradeFire extends DestroyableItem{
         // They initialize outside of the screen vertically
         positionY = 0;
         rotation=0;
-        numberOfBullets=30;
+        health=1;
     }
 
 
@@ -39,7 +38,7 @@ public class UpgradeFire extends DestroyableItem{
         //gameController.returnToPool(this);
     }
 
-    public int getNumberOfBullets() {
-        return numberOfBullets;
+    public int getHealth() {
+        return health;
     }
 }

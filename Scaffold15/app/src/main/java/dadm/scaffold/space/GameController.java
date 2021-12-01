@@ -8,21 +8,26 @@ import java.util.List;
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.GameObject;
+import dadm.scaffold.space.upgrades.UpgradeFire;
+import dadm.scaffold.space.upgrades.UpgradeHealth;
 
 public class GameController extends GameObject {
 
     private static final int TIME_BETWEEN_ASTEROIDS = 500;
     private static final int TIME_BETWEEN_ENEMIES = 5000;
-    private static final int TIME_BETWEEN_UPGRADES = 500;
+    private static final int TIME_BETWEEN_FIREUPGRADES = 500;
+    private static final int TIME_BETWEEN_HEALTHUPGRADES = 500;
 
     private long currentMillis;
     private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
     private List<Enemy> enemyPool = new ArrayList<Enemy>();
     private List<UpgradeFire> upgradeFiresPool = new ArrayList<UpgradeFire>();
+    private List<UpgradeHealth> upgradeHealthPool = new ArrayList<UpgradeHealth>();
 
     private int enemiesSpawned;
     private int asteroidsSpawned;
     private int upgradesFireSpawned;
+    private int upgradesHealthSpawned;
 
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
@@ -35,6 +40,9 @@ public class GameController extends GameObject {
         for (int i=0; i<5; i++) {
             upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.robot));
         }
+        for (int i=0; i<5; i++) {
+            upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.robot));
+        }
     }
 
     @Override
@@ -43,6 +51,7 @@ public class GameController extends GameObject {
         enemiesSpawned = 0;
         asteroidsSpawned=0;
         upgradesFireSpawned=0;
+        upgradesHealthSpawned=0;
     }
 
     @Override
@@ -66,13 +75,22 @@ public class GameController extends GameObject {
             asteroidsSpawned++;
         }
 
-        long waveTimestampUpgradesFire = upgradesFireSpawned*TIME_BETWEEN_UPGRADES;
+        long waveTimestampUpgradesFire = upgradesFireSpawned* TIME_BETWEEN_FIREUPGRADES;
         if (currentMillis > waveTimestampUpgradesFire&&!upgradeFiresPool.isEmpty()) {
             // Spawn a new upgrade
             UpgradeFire a = upgradeFiresPool.remove(0);
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             upgradesFireSpawned++;
+        }
+
+        long waveTimestampUpgradesHealth = upgradesHealthSpawned* TIME_BETWEEN_HEALTHUPGRADES;
+        if (currentMillis > waveTimestampUpgradesHealth&&!upgradeHealthPool.isEmpty()) {
+            // Spawn a new upgrade
+            UpgradeHealth a = upgradeHealthPool.remove(0);
+            a.init(gameEngine);
+            gameEngine.addGameObject(a);
+            upgradesHealthSpawned++;
         }
     }
 

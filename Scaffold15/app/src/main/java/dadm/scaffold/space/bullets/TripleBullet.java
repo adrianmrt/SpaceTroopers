@@ -1,8 +1,9 @@
-package dadm.scaffold.space;
+package dadm.scaffold.space.bullets;
 
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
 import dadm.scaffold.sound.GameEvent;
+import dadm.scaffold.space.Bullet;
 
 public class TripleBullet extends Bullet {
     private int position; //0 left, 1 middle, 2 right
