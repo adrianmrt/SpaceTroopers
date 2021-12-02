@@ -22,6 +22,8 @@ public class ScaffoldActivity extends AppCompatActivity {
     private ScoreManager scoreManager;
     private LifeManager lifeManager;
 
+    String spaceShipSprite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +52,16 @@ public class ScaffoldActivity extends AppCompatActivity {
         return lifeManager;
     }
 
-    public void startGame() {
+    public void startGame(String spriteId) {
+        spaceShipSprite=spriteId;
         // Navigate the game fragment, which makes the start automatically
         navigateToFragment( new GameFragment());
     }
 
     private void navigateToFragment(BaseFragment dst) {
+        Bundle bundle= new Bundle();
+        bundle.putString("shipSprite",spaceShipSprite);
+        dst.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.container, dst, TAG_FRAGMENT)

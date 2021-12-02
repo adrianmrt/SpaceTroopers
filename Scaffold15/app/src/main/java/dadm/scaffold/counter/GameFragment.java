@@ -1,5 +1,6 @@
 package dadm.scaffold.counter;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,13 +24,11 @@ import dadm.scaffold.input.JoystickInputController;
 import dadm.scaffold.space.GameController;
 import dadm.scaffold.space.SpaceShipPlayer;
 
-
 public class GameFragment extends BaseFragment implements View.OnClickListener {
     private GameEngine theGameEngine;
     FragmentManager fragmentManager;
     public GameFragment instance;
-
-
+    String shipSprite;
 
     public GameFragment() {
         if(instance==null){
@@ -41,6 +40,8 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         fragmentManager = getParentFragmentManager();
+        Bundle bundle= getArguments();
+        shipSprite=bundle.getString("shipSprite","");
 
         //setListeners for PauseMenu
         fragmentManager.setFragmentResultListener("handlePauseMenu", this, ((requestKey, result) -> {
@@ -84,18 +85,30 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 theGameEngine.setScoreManager(scoreManager);
 
                 //Initialize life Manager
-                LifeManager lifeManager= getScaffoldActivity().getLifeManager();
+                LifeManager lifeManager = getScaffoldActivity().getLifeManager();
                 lifeManager.setLifesT(view.findViewById(R.id.lifesText));
                 theGameEngine.setLifeManager(lifeManager);
 
-                theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine));
+                //initialize spaceship sprite
+                switch (shipSprite) {
+                    case "ship1ImgButton":
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
+                        break;
+                    case "ship2ImgButton":
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.robot));
+                        break;
+                    case "ship3ImgButton":
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.a10000));
+                        break;
+                    default:
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
+                }
+                //theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));
                 theGameEngine.addGameObject(new GameController(theGameEngine));
                 theGameEngine.startGame();
             }
         });
-
-
     }
 
     @Override
@@ -146,4 +159,5 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
             button.setText(R.string.resume);
         }
     }
+
 }
