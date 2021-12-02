@@ -26,8 +26,54 @@
         android:text="@string/start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.691" />
+        app:layout_constraintVertical_bias="0.499" />
+
+    <RadioGroup
+        android:id="@+id/spritesRadioGroup"
+        android:layout_width="223dp"
+        android:layout_height="77dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72">
+
+        <RadioButton
+            android:id="@+id/ship1ImgButton"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@drawable/ship"
+            android:contentDescription="@string/ship1imgbutton"
+            android:scaleX="1.7"
+            android:scaleY="1.7"
+            android:translationX="50dp" />
+
+        <RadioButton
+            android:id="@+id/ship2ImgButton"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@drawable/robot"
+            android:contentDescription="@string/ship2imgbutton"
+            android:scaleX="1.7"
+            android:scaleY="1.7"
+            android:translationX="50dp" />
+
+        <RadioButton
+            android:id="@+id/ship3ImgButton"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@drawable/a10000"
+            android:contentDescription="@string/ship3imgbutton"
+            android:scaleX="1.7"
+            android:scaleY="1.7"
+            android:translationX="50dp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
