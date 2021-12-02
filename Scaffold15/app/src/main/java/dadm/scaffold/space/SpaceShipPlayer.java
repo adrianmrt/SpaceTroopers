@@ -1,5 +1,7 @@
 package dadm.scaffold.space;
 
+import android.graphics.drawable.Drawable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,8 +44,8 @@ public class SpaceShipPlayer extends Sprite {
         TripleBullet
     }
 
-    public SpaceShipPlayer(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.ship);
+    public SpaceShipPlayer(GameEngine gameEngine,int spriteId) {
+        super(gameEngine, spriteId);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         theGameEngine = gameEngine;
         maxX = theGameEngine.width - width;
@@ -223,4 +225,5 @@ public class SpaceShipPlayer extends Sprite {
     public int getBulletDamage() {
         return bulletDamage;
     }
+
 }
