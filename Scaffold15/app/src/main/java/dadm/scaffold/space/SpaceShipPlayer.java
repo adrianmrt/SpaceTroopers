@@ -226,4 +226,11 @@ public class SpaceShipPlayer extends Sprite {
         return bulletDamage;
     }
 
+    public void ChangeToAsteroidBullets(){
+        bulletEffect=0;
+    }
+    public void ChangeToEnemyBullets(){
+        bulletEffect=1;
+    }
+
 }
