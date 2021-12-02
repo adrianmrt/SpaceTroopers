@@ -154,10 +154,6 @@ public class GameEngine {
             }
         }
         int tempScore = scoreManager.getCurrentScore();
-        if (tempScore == 1000) {
-            stopGame();
-            EndGame(tempScore);
-        }
     }
 
     public void onDraw() {

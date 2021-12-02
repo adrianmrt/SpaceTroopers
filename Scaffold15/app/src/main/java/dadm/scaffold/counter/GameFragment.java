@@ -25,8 +25,9 @@ import dadm.scaffold.space.GameController;
 import dadm.scaffold.space.SpaceShipPlayer;
 
 public class GameFragment extends BaseFragment implements View.OnClickListener {
+    private FragmentManager fragmentManager;
     private GameEngine theGameEngine;
-    FragmentManager fragmentManager;
+
     public GameFragment instance;
     String shipSprite;
 
