@@ -92,16 +92,16 @@ public class GameFragment extends BaseFragment implements View.OnClickListener {
                 //initialize spaceship sprite
                 switch (shipSprite) {
                     case "ship1ImgButton":
-                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.us_a26));
                         break;
                     case "ship2ImgButton":
-                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.robot));
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.jap_ki21));
                         break;
                     case "ship3ImgButton":
-                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.a10000));
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ger_he111));
                         break;
                     default:
-                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
+                        theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.us_a26));
                 }
                 //theGameEngine.addGameObject(new SpaceShipPlayer(theGameEngine, R.drawable.ship));
                 theGameEngine.addGameObject(new FramesPerSecondCounter(theGameEngine));

@@ -53,14 +53,12 @@ public class GameEngine {
 
         QuadTree.init();
 
-        this.width = theGameView.getWidth()
-                - theGameView.getPaddingRight() - theGameView.getPaddingLeft();
-        this.height = theGameView.getHeight()
-                - theGameView.getPaddingTop() - theGameView.getPaddingTop();
+        this.width = theGameView.getWidth() - theGameView.getPaddingRight() - theGameView.getPaddingLeft();
+        this.height = theGameView.getHeight() - theGameView.getPaddingTop() - theGameView.getPaddingTop();
 
         quadTree.setArea(new Rect(0, 0, width, height));
 
-        this.pixelFactor = this.height / 400d;
+        this.pixelFactor = this.height / 1200d;
 
     }
 
