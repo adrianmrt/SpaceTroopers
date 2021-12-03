@@ -31,7 +31,7 @@ public class JoystickInputController extends InputController {
         joystickCenterX = view.findViewById(R.id.joystickCenter).getX();
         joystickCenterY = view.findViewById(R.id.joystickCenter).getY();
 
-        double pixelFactor = view.getHeight() / 1200d;
+        double pixelFactor = view.getHeight() / 400d;
         maxDistance = 50*pixelFactor;
     }
 

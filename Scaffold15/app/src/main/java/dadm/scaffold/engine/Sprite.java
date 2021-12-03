@@ -20,7 +20,7 @@ public abstract class Sprite extends ScreenGameObject {
     protected int screenWidth;
     protected int screenHeight;
 
-    protected Sprite (GameEngine gameEngine, int drawableRes) {
+    protected Sprite(GameEngine gameEngine, int drawableRes) {
         Resources r = gameEngine.getContext().getResources();
         Drawable spriteDrawable = r.getDrawable(drawableRes);
 
@@ -28,25 +28,25 @@ public abstract class Sprite extends ScreenGameObject {
 
         this.height = (int) (spriteDrawable.getIntrinsicHeight() * this.pixelFactor);
         this.width = (int) (spriteDrawable.getIntrinsicWidth() * this.pixelFactor);
-        screenHeight=gameEngine.height;
-        screenWidth=gameEngine.width;
+        screenHeight = gameEngine.height;
+        screenWidth = gameEngine.width;
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
 
-        radius = Math.max(height, width)/2;
+        radius = Math.max(height, width) / 2;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         if (positionX > canvas.getWidth()
                 || positionY > canvas.getHeight()
-                || positionX < - width
-                || positionY < - height) {
+                || positionX < -width
+                || positionY < -height) {
             return;
         }
         matrix.reset();
         matrix.postScale((float) pixelFactor, (float) pixelFactor);
         matrix.postTranslate((float) positionX, (float) positionY);
-        matrix.postRotate((float) rotation, (float) (positionX + width/2), (float) (positionY + height/2));
+        matrix.postRotate((float) rotation, (float) (positionX + width / 2), (float) (positionY + height / 2));
         canvas.drawBitmap(bitmap, matrix, null);
     }
 

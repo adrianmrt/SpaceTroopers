@@ -37,14 +37,15 @@
 
         <TextView
             android:id="@+id/PausedText"
-            android:layout_width="213dp"
+            android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginTop="84dp"
             android:background="#4D000000"
             android:lineSpacingExtra="8sp"
-            android:text="@string/game_paused"
+            android:text="Juego pausado"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#FFFFFF"
+            android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

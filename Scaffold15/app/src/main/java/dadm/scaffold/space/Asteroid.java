@@ -18,6 +18,7 @@ public class Asteroid extends DestroyableItem {
         super(gameController, gameEngine, spriteId);
         this.speed = 200d * pixelFactor/1000d;
         this.gameController = gameController;
+        this.rotationSpeed = 0;
         setPoints(50);
         setDamage(1);
     }
