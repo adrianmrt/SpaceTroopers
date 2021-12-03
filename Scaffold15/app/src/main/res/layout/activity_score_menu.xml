@@ -7,6 +7,19 @@
     android:layout_height="match_parent"
     tools:context=".counter.ScoreMenuFragment">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ilustration" />
+
     <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
@@ -14,7 +27,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="200dp"
         android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#FFFFFF" />
 
     <ImageButton
         android:id="@+id/ExitButtonScore"
@@ -22,5 +36,6 @@
         android:layout_height="51dp"
         android:layout_gravity="center|center_vertical"
         android:contentDescription="Go to main menu"
-        android:src="@android:drawable/btn_star" />
+        android:src="@drawable/abc_vector_test" />
+
 </FrameLayout>
