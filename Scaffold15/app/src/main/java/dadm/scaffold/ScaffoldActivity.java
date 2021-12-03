@@ -35,9 +35,8 @@ public class ScaffoldActivity extends AppCompatActivity {
         }
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         soundManager = new SoundManager(getApplicationContext());
-        scoreManager= new ScoreManager();
-        lifeManager= new LifeManager();
-
+        scoreManager = new ScoreManager();
+        lifeManager = new LifeManager();
     }
 
     public SoundManager getSoundManager() {
@@ -53,14 +52,14 @@ public class ScaffoldActivity extends AppCompatActivity {
     }
 
     public void startGame(String spriteId) {
-        spaceShipSprite=spriteId;
+        spaceShipSprite = spriteId;
         // Navigate the game fragment, which makes the start automatically
-        navigateToFragment( new GameFragment());
+        navigateToFragment(new GameFragment());
     }
 
     private void navigateToFragment(BaseFragment dst) {
-        Bundle bundle= new Bundle();
-        bundle.putString("shipSprite",spaceShipSprite);
+        Bundle bundle = new Bundle();
+        bundle.putString("shipSprite", spaceShipSprite);
         dst.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()
@@ -92,8 +91,7 @@ public class ScaffoldActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_LOW_PROFILE);
-            }
-            else {
+            } else {
                 decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -103,5 +101,4 @@ public class ScaffoldActivity extends AppCompatActivity {
             }
         }
     }
-
 }
