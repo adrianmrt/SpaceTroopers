@@ -32,7 +32,7 @@
 
     <RadioGroup
         android:id="@+id/spritesRadioGroup"
-        android:layout_width="223dp"
+        android:layout_width="wrap_content"
         android:layout_height="77dp"
         android:layout_marginBottom="16dp"
         android:orientation="horizontal"
@@ -44,36 +44,46 @@
 
         <RadioButton
             android:id="@+id/ship1ImgButton"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/ship"
+            android:button="@drawable/us_a26"
             android:contentDescription="@string/ship1imgbutton"
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            android:translationX="50dp" />
+            android:scaleX="1"
+            android:scaleY="1"
+            android:translationX="0dp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/ship2ImgButton"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/robot"
+            android:button="@drawable/jap_ki21"
             android:contentDescription="@string/ship2imgbutton"
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            android:translationX="50dp" />
+            android:scaleX="1"
+            android:scaleY="1"
+            android:translationX="0dp" />
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/ship3ImgButton"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/a10000"
+            android:button="@drawable/ger_he111"
             android:contentDescription="@string/ship3imgbutton"
-            android:scaleX="1.7"
-            android:scaleY="1.7"
-            android:translationX="50dp" />
+            android:scaleX="1"
+            android:scaleY="1"
+            android:translationX="0dp" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

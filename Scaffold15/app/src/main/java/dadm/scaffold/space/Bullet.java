@@ -19,15 +19,16 @@ public class Bullet extends Sprite {
 
     public int effect; //0 asteroids, 1 enemy, 2 player
 
-    public Bullet(GameEngine gameEngine){
+    public Bullet(GameEngine gameEngine) {
         super(gameEngine, R.drawable.bullet);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
-        screenWidth= gameEngine.width;
-        screenHeight= gameEngine.height;
+        screenWidth = gameEngine.width;
+        screenHeight = gameEngine.height;
     }
 
     @Override
-    public void startGame() {}
+    public void startGame() {
+    }
 
     @Override
     public void onUpdate(long elapsedMillis, GameEngine gameEngine) {
@@ -40,15 +41,15 @@ public class Bullet extends Sprite {
     }
 
     public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY, int effect) {
-        positionX = initPositionX - width/2;
-        positionY = initPositionY - height/2;
+        positionX = initPositionX - width / 2;
+        positionY = initPositionY - height / 2;
         parent = parentPlayer;
-        bulletDamage= parent.getBulletDamage();
-        this.effect =effect;
+        bulletDamage = parent.getBulletDamage();
+        this.effect = effect;
         setBulletImage(effect);
     }
 
-   protected void removeObject(GameEngine gameEngine) {
+    protected void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
         // And return it to the pool
         parent.releaseBullet(this);
@@ -56,21 +57,19 @@ public class Bullet extends Sprite {
 
     @Override
     public void onCollision(GameEngine gameEngine, ScreenGameObject otherObject) {
-        if (otherObject instanceof Asteroid && effect ==0) {
+        if (otherObject instanceof Asteroid && effect == 0) {
             // Remove both from the game (and return them to their pools)
             removeObject(gameEngine);
             DestroyableItem a = (DestroyableItem) otherObject;
             a.addPoints(a.getPoints());// Add  score
             a.removeObject(gameEngine);
             gameEngine.onGameEvent(GameEvent.AsteroidHit);
-        }
-        else if (otherObject instanceof Enemy && effect ==1) {
+        } else if (otherObject instanceof Enemy && effect == 1) {
             Enemy a = (Enemy) otherObject;
             a.getHurt(bulletDamage);//damage enemy
             removeObject(gameEngine);
             //gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
-        }
-        else if (otherObject instanceof EnemyBullet) {
+        } else if (otherObject instanceof EnemyBullet) {
             EnemyBullet a = (EnemyBullet) otherObject;
             a.removeObject(gameEngine);
             removeObject(gameEngine);
@@ -95,5 +94,4 @@ public class Bullet extends Sprite {
                 break;
         }
     }
-
 }

@@ -41,7 +41,7 @@ public class GameController extends GameObject {
             upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.robot));
         }
         for (int i=0; i<5; i++) {
-            upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.robot));
+            upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.health_icon));
         }
     }
 

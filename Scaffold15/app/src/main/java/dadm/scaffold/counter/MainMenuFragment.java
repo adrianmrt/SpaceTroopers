@@ -15,24 +15,19 @@ import dadm.scaffold.ScaffoldActivity;
 public class MainMenuFragment extends BaseFragment implements View.OnClickListener {
     String spaceShipSprite;
     RadioGroup radioGroup;
+
     public MainMenuFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        radioGroup= rootView.findViewById(R.id.spritesRadioGroup);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            public void onCheckedChanged(RadioGroup group, int checkedId)
-            {
-                // This will get the radiobutton that has changed in its check state
-                RadioButton checkedRadioButton = (RadioButton)group.findViewById(checkedId);
-                // This puts the value (true/false) into the variable
-                spaceShipSprite=checkedRadioButton.getContentDescription().toString();
-
-            }
+        radioGroup = rootView.findViewById(R.id.spritesRadioGroup);
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            // This will get the radiobutton that has changed in its check state
+            RadioButton checkedRadioButton = (RadioButton) group.findViewById(checkedId);
+            // This puts the value (true/false) into the variable
+            spaceShipSprite = checkedRadioButton.getContentDescription().toString();
         });
         return rootView;
     }
@@ -41,11 +36,10 @@ public class MainMenuFragment extends BaseFragment implements View.OnClickListen
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.findViewById(R.id.btn_start).setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
-        ((ScaffoldActivity)getActivity()).startGame(spaceShipSprite);
+        ((ScaffoldActivity) getActivity()).startGame(spaceShipSprite);
     }
 }

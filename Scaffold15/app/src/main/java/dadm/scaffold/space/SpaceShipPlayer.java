@@ -44,7 +44,7 @@ public class SpaceShipPlayer extends Sprite {
         TripleBullet
     }
 
-    public SpaceShipPlayer(GameEngine gameEngine,int spriteId) {
+    public SpaceShipPlayer(GameEngine gameEngine, int spriteId) {
         super(gameEngine, spriteId);
         speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
         theGameEngine = gameEngine;
@@ -131,7 +131,6 @@ public class SpaceShipPlayer extends Sprite {
             shootBullet(gameEngine);
             timeSinceLastFire = 0;
             gameEngine.onGameEvent(GameEvent.LaserFired);
-
         } else {
             timeSinceLastFire += elapsedMillis;
         }
@@ -147,11 +146,8 @@ public class SpaceShipPlayer extends Sprite {
         } else if (otherObject instanceof EnemyBullet) {
             //gameEngine.stopGame();
             EnemyBullet a = (EnemyBullet) otherObject;
-
             theGameEngine.getHurt(a.bulletDamage);
             a.removeObject(gameEngine);
-
-
         } else if (otherObject instanceof Enemy) {
             Enemy a = (Enemy) otherObject;
             theGameEngine.getHurt(2);
@@ -171,14 +167,12 @@ public class SpaceShipPlayer extends Sprite {
             //gameEngine.onGameEvent(GameEvent.AsteroidHit);
         }
 
-
         if (lifeManager.getCurrentLife() <= 0) {
             gameEngine.removeGameObject(this);
             gameEngine.onGameEvent(GameEvent.SpaceshipDestroy);
         } else {
             gameEngine.onGameEvent(GameEvent.SpaceshipHit);
         }
-
     }
 
     private void shootBullet(GameEngine gameEngine) {
@@ -225,5 +219,4 @@ public class SpaceShipPlayer extends Sprite {
     public int getBulletDamage() {
         return bulletDamage;
     }
-
 }
