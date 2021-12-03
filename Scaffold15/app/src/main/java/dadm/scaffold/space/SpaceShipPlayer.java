@@ -46,7 +46,7 @@ public class SpaceShipPlayer extends Sprite {
 
     public SpaceShipPlayer(GameEngine gameEngine, int spriteId) {
         super(gameEngine, spriteId);
-        speedFactor = pixelFactor * 100d / 1000d; // We want to move at 100px per second on a 400px tall screen
+        speedFactor = pixelFactor * 0.2d; // We want to move at 200px per second
         theGameEngine = gameEngine;
         maxX = theGameEngine.width - width;
         maxY = theGameEngine.height - height;

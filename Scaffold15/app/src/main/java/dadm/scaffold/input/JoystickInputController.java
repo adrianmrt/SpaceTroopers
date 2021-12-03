@@ -19,7 +19,7 @@ public class JoystickInputController extends InputController {
 
     private final double maxDistance;
 
-    private TextView joystickCenter;
+
     private float joystickCenterX;
     private float joystickCenterY;
 
@@ -28,11 +28,10 @@ public class JoystickInputController extends InputController {
         view.findViewById(R.id.joystick_touch).setOnTouchListener(new FireButtonTouchListener());
         view.findViewById(R.id.joystick_change).setOnTouchListener(new ChangeWeaponTouchListener());
 
-        joystickCenter = view.findViewById(R.id.joystickCenter);
         joystickCenterX = view.findViewById(R.id.joystickCenter).getX();
         joystickCenterY = view.findViewById(R.id.joystickCenter).getY();
 
-        double pixelFactor = view.getHeight() / 400d;
+        double pixelFactor = view.getHeight() / 1200d;
         maxDistance = 50*pixelFactor;
     }
 
