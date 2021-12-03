@@ -91,7 +91,7 @@ public class JoystickInputController extends InputController {
             //Para pc
             if (action == MotionEvent.BUTTON_PRIMARY) {
                 changeAmmo(isChanged);
-            //Para movil
+            //Para movil?
             } else if (action == MotionEvent.ACTION_BUTTON_PRESS){
                 changeAmmo(isChanged);
             }
