@@ -26,8 +26,8 @@ public abstract class Sprite extends ScreenGameObject {
 
         this.pixelFactor = gameEngine.pixelFactor;
 
-        this.height = (int) (spriteDrawable.getIntrinsicHeight() * this.pixelFactor);
-        this.width = (int) (spriteDrawable.getIntrinsicWidth() * this.pixelFactor);
+        this.height = (int) (spriteDrawable.getIntrinsicHeight());
+        this.width = (int) (spriteDrawable.getIntrinsicWidth());
         screenHeight = gameEngine.height;
         screenWidth = gameEngine.width;
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();

@@ -45,8 +45,6 @@ public class GameEngine {
     private Activity mainActivity;
     FragmentManager fragmentManager;
 
-
-
     public GameEngine(AppCompatActivity activity, GameView gameView) {
         mainActivity = activity;
         fragmentManager = activity.getSupportFragmentManager();
@@ -60,7 +58,7 @@ public class GameEngine {
 
         quadTree.setArea(new Rect(0, 0, width, height));
 
-        this.pixelFactor = this.height / 1200d;
+        this.pixelFactor = this.height / 500;
 
     }
 
