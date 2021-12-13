@@ -74,7 +74,6 @@ public class Enemy extends DestroyableItem {
         gameEngine.removeGameObject(this);
     }
 
-
     public void setLife(int life) {
         this.life = life;
     }
@@ -134,7 +133,6 @@ public class Enemy extends DestroyableItem {
         TripleBullet b = tripleBullets.remove(0);
         return b;
     }
-
 
     public void releaseBullet(EnemyBullet bullet) {
         enemyBullets.add(bullet);
