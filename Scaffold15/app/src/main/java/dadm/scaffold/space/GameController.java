@@ -32,16 +32,16 @@ public class GameController extends GameObject {
     public GameController(GameEngine gameEngine) {
         // We initialize the pool of items now
         for (int i=0; i<10; i++) {
-            asteroidPool.add(new Asteroid(this, gameEngine, R.drawable.uk_spitfire));
+            asteroidPool.add(new Asteroid(this, gameEngine, R.drawable.asteroid));
         }
         for (int i=0; i<3; i++) {
-            enemyPool.add(new Enemy(this, gameEngine, R.drawable.uk_lancaster));
+            enemyPool.add(new Enemy(this, gameEngine, R.drawable.enemyship));
         }
         for (int i=0; i<5; i++) {
-            upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.ammo_icon));
+            upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.fireupgrade));
         }
         for (int i=0; i<5; i++) {
-            upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.health_icon));
+            upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.healthupgrade));
         }
     }
 

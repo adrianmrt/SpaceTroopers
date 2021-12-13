@@ -6,6 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="205dp"
+        android:layout_height="59dp"
+        android:background="#6B5297"
+        android:fontFamily="monospace"
+        android:text="START"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="0dp"
@@ -13,22 +29,11 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/menu_bg" />
-
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="175dp"
-        android:layout_height="39dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.906"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/space_background" />
 
     <RadioGroup
         android:id="@+id/spritesRadioGroup"
@@ -47,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/us_a26"
+            android:button="@drawable/ship1"
             android:contentDescription="@string/ship1imgbutton"
             android:scaleX="1"
             android:scaleY="1"
@@ -63,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/jap_ki21"
+            android:button="@drawable/ship2"
             android:contentDescription="@string/ship2imgbutton"
             android:scaleX="1"
             android:scaleY="1"
@@ -79,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:button="@drawable/ger_he111"
+            android:button="@drawable/ship3"
             android:contentDescription="@string/ship3imgbutton"
             android:scaleX="1"
             android:scaleY="1"

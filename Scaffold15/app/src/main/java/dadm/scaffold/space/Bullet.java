@@ -20,7 +20,14 @@ public class Bullet extends Sprite {
     public int effect; //0 asteroids, 1 enemy, 2 player
 
     public Bullet(GameEngine gameEngine) {
-        super(gameEngine, R.drawable.bullet);
+        super(gameEngine, R.drawable.asteroidbullet);
+        speedFactor = gameEngine.pixelFactor * -300d / 1000d;
+        screenWidth = gameEngine.width;
+        screenHeight = gameEngine.height;
+    }
+
+    public Bullet(GameEngine gameEngine, int spriteId) {
+        super(gameEngine, spriteId);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
         screenWidth = gameEngine.width;
         screenHeight = gameEngine.height;
