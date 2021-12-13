@@ -13,10 +13,10 @@ import dadm.scaffold.space.upgrades.UpgradeHealth;
 
 public class GameController extends GameObject {
 
-    private static final int TIME_BETWEEN_ASTEROIDS = 500;
-    private static final int TIME_BETWEEN_ENEMIES = 5000;
-    private static final int TIME_BETWEEN_FIREUPGRADES = 500;
-    private static final int TIME_BETWEEN_HEALTHUPGRADES = 500;
+    private static final int TIME_BETWEEN_ASTEROIDS = 1000;
+    private static final int TIME_BETWEEN_ENEMIES = 8000;
+    private static final int TIME_BETWEEN_FIREUPGRADES = 100; //Final = 10000
+    private static final int TIME_BETWEEN_HEALTHUPGRADES = 100; //Final 12000
 
     private long currentMillis;
     private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
@@ -103,6 +103,7 @@ public class GameController extends GameObject {
         asteroidPool.add(asteroid);
     }
 
+    //LAS DEJO PERO NO HACEN NADA
     public void returnToPool(Enemy enemy) {
         enemyPool.add(enemy);
     }
