@@ -26,13 +26,6 @@ public class Bullet extends Sprite {
         screenHeight = gameEngine.height;
     }
 
-    public Bullet(GameEngine gameEngine, int spriteId) {
-        super(gameEngine, spriteId);
-        speedFactor = gameEngine.pixelFactor * -300d / 1000d;
-        screenWidth = gameEngine.width;
-        screenHeight = gameEngine.height;
-    }
-
     @Override
     public void startGame() {
     }
@@ -48,7 +41,7 @@ public class Bullet extends Sprite {
     }
 
     public void init(SpaceShipPlayer parentPlayer, double initPositionX, double initPositionY, int effect) {
-        positionX = initPositionX - width / 2;
+        positionX = 10+initPositionX - width / 2;
         positionY = initPositionY - height / 2;
         parent = parentPlayer;
         bulletDamage = parent.getBulletDamage();
