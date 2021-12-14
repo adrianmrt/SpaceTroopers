@@ -13,8 +13,8 @@ import dadm.scaffold.space.upgrades.UpgradeHealth;
 
 public class GameController extends GameObject {
 
-    private static final int TIME_BETWEEN_ASTEROIDS = 1000;
-    private static final int TIME_BETWEEN_ENEMIES = 8000;
+    private static final int TIME_BETWEEN_ASTEROIDS = 3000;
+    private static final int TIME_BETWEEN_ENEMIES = 14000;
     private static final int TIME_BETWEEN_FIREUPGRADES = 10000; //Final = 10000
     private static final int TIME_BETWEEN_HEALTHUPGRADES = 12000; //Final 12000
 
