@@ -1,5 +1,10 @@
 package dadm.scaffold.space.bullets;
 
+import android.app.Activity;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+
+import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.space.Bullet;
 import dadm.scaffold.space.Enemy;
@@ -9,11 +14,12 @@ public class EnemyBullet extends Bullet {
     protected Enemy parentEnemy;
     public EnemyBullet(GameEngine gameEngine, int type) {
         super(gameEngine);
+        setBitmap( ((BitmapDrawable) gameEngine.getContext().getResources().getDrawable(R.drawable.enemybullet)));
     }
 
     public void init(Enemy parentPlayer, double initPositionX, double initPositionY,int effect) {
-        positionX = initPositionX - width/2;
-        positionY = initPositionY+height*2;
+        positionX = 10+initPositionX - width/2;
+        positionY = initPositionY+height*1.25;
         parentEnemy = parentPlayer;
         bulletDamage= parentEnemy.getDamage();
         this.effect=effect;

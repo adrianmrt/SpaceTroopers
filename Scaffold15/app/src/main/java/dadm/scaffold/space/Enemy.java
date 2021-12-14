@@ -30,13 +30,12 @@ public class Enemy extends DestroyableItem {
 
     public Enemy(GameController gameController, GameEngine gameEngine, int spriteId) {
         super(gameController, gameEngine, spriteId);
-
     }
 
     @Override
     public void init(GameEngine gameEngine) {
-        speedX = speed;
-        speedY = speed;
+        speedX = speed * 0.9;
+        speedY = speed * 2;
         // Items initialize in the central 50% of the screen horizontally
         positionX = gameEngine.random.nextInt(gameEngine.width / 2) + gameEngine.width / 4;
         // They initialize outside of the screen vertically
@@ -73,7 +72,6 @@ public class Enemy extends DestroyableItem {
     public void removeObject(GameEngine gameEngine) {
         gameEngine.removeGameObject(this);
     }
-
 
     public void setLife(int life) {
         this.life = life;
@@ -134,7 +132,6 @@ public class Enemy extends DestroyableItem {
         TripleBullet b = tripleBullets.remove(0);
         return b;
     }
-
 
     public void releaseBullet(EnemyBullet bullet) {
         enemyBullets.add(bullet);

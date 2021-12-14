@@ -12,164 +12,82 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="start"
-            android:orientation="vertical">
+            android:scaleType="centerCrop"
+            android:src="@drawable/space_background3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView23"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-
-                <ImageView
-                    android:id="@+id/imageView24"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/tileable_water_texture" />
-            </TableRow>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/lifesText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start|top"
-        android:layout_marginStart="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/_0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="#F44336" />
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top|center_vertical"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:text="@string/_0"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
     <dadm.scaffold.engine.StandardGameView
         android:id="@+id/gameView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btn_play_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        tools:text="PAUSE" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginEnd="272dp"
+            android:layout_marginRight="272dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/healthupgrade"
+            app:layout_constraintBottom_toBottomOf="@+id/lifesText"
+            app:layout_constraintEnd_toStartOf="@+id/btn_play_pause"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/lifesText" />
+
+        <TextView
+            android:id="@+id/lifesText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/_0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top|center_vertical"
+            android:layout_marginTop="16dp"
+            android:text="@string/_0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="#FFFFFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_play_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="PAUSE" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         layout="@layout/view_joystick"
