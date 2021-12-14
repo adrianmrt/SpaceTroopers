@@ -11,7 +11,7 @@
         android:layout_width="205dp"
         android:layout_height="59dp"
         android:background="#6B5297"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/black_ops_one"
         android:text="START"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:textColor="#FFFFFF"
