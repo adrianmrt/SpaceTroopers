@@ -34,8 +34,8 @@ public class Enemy extends DestroyableItem {
 
     @Override
     public void init(GameEngine gameEngine) {
-        speedX = speed;
-        speedY = speed * 5;
+        speedX = speed * 0.9;
+        speedY = speed * 2;
         // Items initialize in the central 50% of the screen horizontally
         positionX = gameEngine.random.nextInt(gameEngine.width / 2) + gameEngine.width / 4;
         // They initialize outside of the screen vertically

@@ -119,8 +119,6 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void checkFiring(long elapsedMillis, GameEngine gameEngine) {
-        bulletEffect = gameEngine.theInputController.isChanged ? 1 : 0;
-
         if (gameEngine.theInputController.isFiring && timeSinceLastFire > TIME_BETWEEN_BULLETS) {
             if (gainUpgrade) {
                 initTripleBulletPool(gameEngine, 9);
@@ -176,6 +174,8 @@ public class SpaceShipPlayer extends Sprite {
     }
 
     private void shootBullet(GameEngine gameEngine) {
+        bulletEffect = gameEngine.theInputController.isChanged ? 1 : 0;
+
         switch (bulletType) {
             case TripleBullet:
                 TripleBullet[] bullets = new TripleBullet[3];

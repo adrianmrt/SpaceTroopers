@@ -1,5 +1,9 @@
 package dadm.scaffold.space;
 
+import android.content.res.Resources;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
 import dadm.scaffold.R;
 import dadm.scaffold.engine.GameEngine;
 import dadm.scaffold.engine.ScreenGameObject;
@@ -19,11 +23,15 @@ public class Bullet extends Sprite {
 
     public int effect; //0 asteroids, 1 enemy, 2 player
 
+    private GameEngine localGameEngine;
+    private Drawable spriteDrawable;
+
     public Bullet(GameEngine gameEngine) {
         super(gameEngine, R.drawable.asteroidbullet);
         speedFactor = gameEngine.pixelFactor * -300d / 1000d;
         screenWidth = gameEngine.width;
         screenHeight = gameEngine.height;
+        localGameEngine = gameEngine;
     }
 
     @Override
@@ -87,11 +95,12 @@ public class Bullet extends Sprite {
     private void setBulletImage(int effectB) {
         switch (effectB) {
             case 0:
+                spriteDrawable = localGameEngine.getContext().getResources().getDrawable(R.drawable.asteroidbullet);
                 break;
             case 1:
-                break;
-            case 2:
+                spriteDrawable = localGameEngine.getContext().getResources().getDrawable(R.drawable.shipbullet);
                 break;
         }
+        this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
     }
 }

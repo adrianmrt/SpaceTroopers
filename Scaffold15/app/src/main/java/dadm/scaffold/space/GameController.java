@@ -15,8 +15,8 @@ public class GameController extends GameObject {
 
     private static final int TIME_BETWEEN_ASTEROIDS = 1000;
     private static final int TIME_BETWEEN_ENEMIES = 8000;
-    private static final int TIME_BETWEEN_FIREUPGRADES = 100; //Final = 10000
-    private static final int TIME_BETWEEN_HEALTHUPGRADES = 100; //Final 12000
+    private static final int TIME_BETWEEN_FIREUPGRADES = 10000; //Final = 10000
+    private static final int TIME_BETWEEN_HEALTHUPGRADES = 12000; //Final 12000
 
     private long currentMillis;
     private List<DestroyableItem> asteroidPool = new ArrayList<DestroyableItem>();
@@ -37,10 +37,10 @@ public class GameController extends GameObject {
         for (int i = 0; i < 3; i++) {
             enemyPool.add(new Enemy(this, gameEngine, R.drawable.enemyship));
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             upgradeFiresPool.add(new UpgradeFire(this, gameEngine, R.drawable.fireupgrade));
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 10; i++) {
             upgradeHealthPool.add(new UpgradeHealth(this, gameEngine, R.drawable.healthupgrade));
         }
     }
@@ -82,6 +82,7 @@ public class GameController extends GameObject {
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             upgradesFireSpawned++;
+            upgradeFiresPool.add(a);
         }
 
         long waveTimestampUpgradesHealth = upgradesHealthSpawned * TIME_BETWEEN_HEALTHUPGRADES;
@@ -91,6 +92,7 @@ public class GameController extends GameObject {
             a.init(gameEngine);
             gameEngine.addGameObject(a);
             upgradesHealthSpawned++;
+            upgradeHealthPool.add(a);
         }
     }
 
@@ -103,7 +105,6 @@ public class GameController extends GameObject {
         asteroidPool.add(asteroid);
     }
 
-    //LAS DEJO PERO NO HACEN NADA
     public void returnToPool(Enemy enemy) {
         enemyPool.add(enemy);
     }

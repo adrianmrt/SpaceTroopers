@@ -13,7 +13,7 @@ public abstract class Sprite extends ScreenGameObject {
 
     protected double pixelFactor;
 
-    private Bitmap bitmap;
+    public Bitmap bitmap;
 
     private final Matrix matrix = new Matrix();
 
@@ -26,8 +26,8 @@ public abstract class Sprite extends ScreenGameObject {
 
         this.pixelFactor = gameEngine.pixelFactor;
 
-        this.height = (int) (spriteDrawable.getIntrinsicHeight());
-        this.width = (int) (spriteDrawable.getIntrinsicWidth());
+        this.height = spriteDrawable.getIntrinsicHeight();
+        this.width = spriteDrawable.getIntrinsicWidth();
         screenHeight = gameEngine.height;
         screenWidth = gameEngine.width;
         this.bitmap = ((BitmapDrawable) spriteDrawable).getBitmap();
