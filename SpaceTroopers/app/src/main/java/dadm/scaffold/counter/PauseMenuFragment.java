@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import dadm.scaffold.BaseFragment;
@@ -21,8 +22,8 @@ import dadm.scaffold.engine.GameEngine;
 public class PauseMenuFragment extends BaseFragment {
 
     GameEngine gameEngine;
-    ImageButton resumeButton;
-    ImageButton exitButton;
+    Button resumeButton;
+    Button exitButton;
     FragmentManager fragmentManager;
 
     @Override
