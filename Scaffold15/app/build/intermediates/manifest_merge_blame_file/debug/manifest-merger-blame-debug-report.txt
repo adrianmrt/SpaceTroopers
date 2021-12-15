@@ -1,0 +1,67 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="dadm.scaffold"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+7-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:5:5-7:41
+8        android:minSdkVersion="16"
+8-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:6:9-35
+9        android:targetSdkVersion="31" />
+9-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:7:9-38
+10
+11    <application
+11-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:9:5-34:19
+12        android:allowBackup="true"
+12-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:10:9-35
+13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+13-->[androidx.core:core:1.5.0] C:\Users\Alberto\.gradle\caches\transforms-3\8091e88265a2bdec2561f7dc53bbc273\transformed\core-1.5.0\AndroidManifest.xml:24:18-86
+14        android:debuggable="true"
+15        android:icon="@mipmap/ic_launcher"
+15-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:11:9-43
+16        android:label="@string/app_name"
+16-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:12:9-41
+17        android:roundIcon="@mipmap/ic_launcher_round"
+17-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:13:9-54
+18        android:supportsRtl="true"
+18-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:14:9-35
+19        android:theme="@style/AppTheme" >
+19-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:15:9-40
+20        <activity
+20-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:16:9-18:40
+21            android:name="dadm.scaffold.ScoreMenuActivity"
+21-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:17:13-46
+22            android:exported="false" />
+22-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:18:13-37
+23        <activity
+23-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:19:9-29:20
+24            android:name="dadm.scaffold.ScaffoldActivity"
+24-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:20:13-45
+25            android:exported="true"
+25-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:21:13-36
+26            android:label="@string/title_activity_main"
+26-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:22:13-56
+27            android:screenOrientation="sensorPortrait" >
+27-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:23:13-55
+28            <intent-filter>
+28-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:24:13-28:29
+29                <action android:name="android.intent.action.MAIN" />
+29-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:25:17-69
+29-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:25:25-66
+30
+31                <category android:name="android.intent.category.LAUNCHER" />
+31-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:27:17-77
+31-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:27:27-74
+32            </intent-filter>
+33        </activity>
+34
+35        <meta-data
+35-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:31:9-33:57
+36            android:name="preloaded_fonts"
+36-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:32:13-43
+37            android:resource="@array/preloaded_fonts" />
+37-->E:\OneDrive - Universidad Rey Juan Carlos\URJC\Cuarto\DesarrolloDeAplicacionesParaDispositivosMoviles\P3_DADM\Scaffold15\app\src\main\AndroidManifest.xml:33:13-54
+38    </application>
+39
+40</manifest>
